@@ -1,0 +1,45 @@
+public class While {                           // пока тестовый код
+
+	public static void main(String[] args) {
+
+		SimpleDotCom dot = new SimpleDotCom(); // создаем экземпляр класса SimpleDotCom
+	
+	int[] locations = {1,2,3}; // создаем массив для местоположения сайта ( три послед числа из семи)
+	
+	dot.setLocationCells(locations); // вызываем сеттер сайта
+	
+	String userGuess = "2"; // делаем ход от имени пользователя
+	
+	String result = dot.checkYourself(userGuess); // вызываеи метод checkYourself() обьекта SimpleDotCom()
+	
+	String testResult = "Fail";
+	
+	if (result.equals("Yes")) {  // если ход 2 возвращает строку "Yes" значит все работает
+		testResult = "Gowin";
+	}
+	
+	System.out.print(testResult); // напечатает результат прохождения теста
+	}
+	
+	
+}
+
+
+class SimpleDotCom {
+	
+int[] locationCells;
+int numOfHits = 0;
+
+String checkYourself(String userGuess) {
+	return userGuess; 
+}
+
+void setLocationCells(int [] loc) {
+	
+}
+
+
+
+}
+
+--------------------------------------------------------------------------------------------------------------------------

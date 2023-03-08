@@ -1,0 +1,71 @@
+public class SimpleDotComTestDrive {
+
+	public static void main(String[] args) {
+		SimpleDotCom dot = new SimpleDotCom(); // создаем экземпляр класса SimpleDotCom
+		
+		int[] locations = {1,2,3}; // создаем массив для местоположения сайта ( три послед числа из семи)
+		
+		dot.setLocationCells(locations); // вызываем сеттер сайта
+		
+		String userGuess = "1"; // делаем ход от имени пользователя
+		
+		String result = dot.checkYourself(userGuess); // вызываеи метод checkYourself() обьекта SimpleDotCom()
+		
+
+	}
+
+}
+
+
+----------------------------------------------------------------------------------------
+
+public class SimpleDotCom {
+	
+	int[] locationCells;
+	int numOfHits = 0;
+	
+	public void setLocationCells(int [] loc) {
+		locationCells = loc;
+	}
+
+
+	String checkYourself(String stringGuess) {
+		
+		int guess = Integer.parseInt(stringGuess); // преобразуем тип String в int
+		
+		String result = "Past"; // переменная для хранения результата который будем возврвщать, по умолчанию мимо(past) 
+		
+		for(int cell : locationCells ) {  // проходимся по массиву
+			
+			if (guess==cell) { // сравниваем ход пользователя с элементом из массива
+				
+				result = "Hit"; // Обнаружили попадание
+				
+				numOfHits++; // считаем попадание
+			break; // выбираемся из цикла, другие ячейки проверять не нужно
+			}
+			
+			
+		}
+		
+		if (numOfHits==locationCells.length) { // вышли из цикла но проверяем не потопили ли нас(есть ли три попадания) 
+			result = " Sink";  // и при необходимости меняем на потопил(sink)
+			
+		}
+		
+		System.out.print(result); // выводим пользователю результат(мимо если он не был изменен на попал или потопил)
+		
+		return result; //возвращаем результат в вызывающий метод
+	}
+
+	
+
+
+	}
+
+
+
+
+
+
+
