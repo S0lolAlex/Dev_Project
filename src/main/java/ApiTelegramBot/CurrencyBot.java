@@ -85,27 +85,27 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands {
                 setTime(chatId,time);
                 break;
             case "/2":
-                returnMenu(chatId, "2 знака");
+                returnMenu(chatId, "2 Р·РЅР°РєРё");
                 df = new DecimalFormat("#0.00");
                 break;
             case "/3":
-                returnMenu(chatId, "3 знака");
+                returnMenu(chatId, "3 Р·РЅР°РєРё");
                 df = new DecimalFormat("#0.000");
                 break;
             case "/4":
-                returnMenu(chatId, "4 знака");
+                returnMenu(chatId, "4 Р·РЅР°РєРё");
                 df = new DecimalFormat("#0.0000");
                 break;
             case "/Private":
-                returnMenu(chatId, "ПриватБанк");
+                returnMenu(chatId, "РџСЂРёРІР°С‚Р‘Р°РЅРє");
                 BANK = new PrivatService();
                 break;
             case "/Mono":
-                returnMenu(chatId, "Монобанк");
+                returnMenu(chatId, "РњРѕРЅРѕР‘Р°РЅРє");
                 BANK = new MonobankService();
                 break;
             case "/NBU":
-                returnMenu(chatId, "Банк НБУ");
+                returnMenu(chatId, "Р‘Р°РЅРє РќР‘РЈ");
                 BANK = new NBUService();
                 break;
             case "9":
@@ -120,8 +120,8 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands {
                                                 case"18":time = receivedMessage;
                                                     returnMenu(chatId,time);
                                                     break;
-                                                    case "Выключить уведомления":
-                                                        time = "Оповещения отключены";
+                                                    case "Р’С–РґРєР»СЋС‡РёС‚Рё РїРѕРІС–РґРѕРјР»РµРЅРЅСЏ":
+                                                        time = "РџРѕРІС–РґРѕРјР»РµРЅРЅСЏ РІС–РґРєР»СЋС‡РµРЅС–";
                                                         returnMenu(chatId,time);
                                             break;
 
@@ -137,8 +137,8 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands {
     private void setTime(long chatId, String time){
         SendMessage message = new SendMessage();
         message.setChatId(chatId);
-        message.setText("Выберите время оповещения. \n " +
-                "Cейчас выбрано :" + time);
+        message.setText("Р’РёР±РµСЂС–С‚СЊ С‡Р°СЃ РїРѕРІС–РґРѕРјР»РµРЅРЅСЏ" +
+                "Р—Р°СЂР°Р· РІРёР±СЂР°РЅРѕ" + time);
         message.setReplyMarkup(Buttons.initTimeKeyboard());
         try {
             execute(message);
@@ -150,7 +150,7 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands {
     private void returnMenu(long chatId, String text) {
         SendMessage message = new SendMessage();
         message.setChatId(chatId);
-        message.setText("Вы выбрали " + text);
+        message.setText("Р’Рё РѕР±СЂР°Р»Рё" + text);
         message.setReplyMarkup(Buttons.startMarkup());
         try {
             execute(message);
@@ -226,7 +226,7 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands {
     private void countFloatPoint(long chatId) {
         SendMessage message = new SendMessage();
         message.setChatId(chatId);
-        message.setText("задайте кол-во знаков");
+        message.setText("Р’РёР±РµСЂС–С‚СЊ РєС–Р»СЊРєС–СЃС‚СЊ Р·РЅР°РєС–РІ");
         message.setReplyMarkup(Buttons.setFloatPoint());
 
         try {
@@ -239,7 +239,7 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands {
     private void chooseCurrency(long chatId) {
         SendMessage message = new SendMessage();
         message.setChatId(chatId);
-        message.setText("Какие валюты?");
+        message.setText("РЇРєС– РІР°Р»СЋС‚Рё?");
         message.setReplyMarkup(Buttons.chooseCurrency());
 
         try {
