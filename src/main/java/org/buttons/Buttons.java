@@ -24,6 +24,8 @@ public class Buttons {
     private static final InlineKeyboardButton NBU_BUTTON = new InlineKeyboardButton("мас");
     private static final InlineKeyboardButton EUR_BUTTON = new InlineKeyboardButton("EUR");
     private static final InlineKeyboardButton USD_BUTTON = new InlineKeyboardButton("USD");
+//    private static final KeyboardButton EUR_BUTTON = new KeyboardButton("EUR");
+//    private static final KeyboardButton USD_BUTTON = new KeyboardButton("USD");
 
 
     public static void initKeyboard(){
@@ -39,8 +41,8 @@ public class Buttons {
         PRIVATE_BUTTON.setCallbackData("/Private");
         MONO_BUTTON.setCallbackData("/Mono");
         NBU_BUTTON.setCallbackData("/NBU");
-        EUR_BUTTON.setCallbackData("/EUR");
-        USD_BUTTON.setCallbackData("/USD");
+        EUR_BUTTON.setCallbackData("EUR");
+        USD_BUTTON.setCallbackData("USD");
     }
 
 

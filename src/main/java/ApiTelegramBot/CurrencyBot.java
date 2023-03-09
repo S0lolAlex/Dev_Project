@@ -14,20 +14,22 @@ import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScope
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.text.DecimalFormat;
+import java.util.Currency;
 
 public class CurrencyBot extends TelegramLongPollingBot implements BotCommands {
     private static BanksUtil BANK = new PrivatService();
     private static DecimalFormat df = new DecimalFormat();
     private static String time = "18";
+    private static String currency = "USD";
 
     @Override
     public String getBotUsername() {
-        return "nikname";
+        return "JavaTalkBot";
     }
 
     @Override
     public String getBotToken() {
-        return "token";
+        return "5668584509:AAHZIyc5ZmGqWtGYHql4Sd_AKP9xOebVy0A";
     }
 
     public CurrencyBot() {
@@ -108,6 +110,14 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands {
                 returnMenu(chatId, "¡‡ÌÍ Õ¡”");
                 BANK = new NBUService();
                 break;
+            case "USD":
+                returnMenu(chatId, "USD");
+                currency = "USD";
+                break;
+            case "EUR":
+                returnMenu(chatId, "EUR");
+                currency = "EUR";
+                break;
             case "9":
                 case "10":
                     case"11":
@@ -126,7 +136,7 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands {
                                             break;
 
             case "/get":
-                String answer = BANK.getCurrency("USD", df);
+                String answer = BANK.getCurrency(currency, df);
                 getInfo(chatId, answer);
                 break;
             default:
