@@ -21,6 +21,10 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands {
     private static DecimalFormat df = new DecimalFormat();
     private static String time = "18";
     private static String currency = "USD";
+    private static int count = 0;
+    private static boolean isUsd = false;
+    private static boolean isEur = false;
+    private static boolean isOne = true;
 
     @Override
     public String getBotUsername() {
@@ -84,7 +88,7 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands {
                 chooseCurrency(chatId);
                 break;
             case "/time":
-                setTime(chatId,time);
+                setTime(chatId, time);
                 break;
             case "/2":
                 returnMenu(chatId, "2 знака");
@@ -111,40 +115,69 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands {
                 BANK = new NBUService();
                 break;
             case "USD":
-                returnMenu(chatId, "USD");
-                currency = "USD";
+                isUsd = !isUsd;
+                if (isUsd && !isEur) {
+                    currency = "USD";
+                    isOne = true;
+                } else if (!isUsd && isEur) {
+                    currency = "EUR";
+                    isOne = true;
+                } else {
+                    isOne = false;
+                }
                 break;
             case "EUR":
-                returnMenu(chatId, "EUR");
-                currency = "EUR";
+                isEur = !isUsd;
+                if (!isUsd && isEur) {
+                    currency = "EUR";
+                    isOne = true;
+                } else if (isUsd && !isEur) {
+                    currency = "USD";
+                    isOne = true;
+                }else {
+                    isOne = false;
+                }
+                break;
+            case "/Chosen":
+                if (isOne) {
+                    returnMenu(chatId, currency);
+                } else {
+                    returnMenu(chatId, "USD та EUR");
+                }
                 break;
             case "9":
-                case "10":
-                    case"11":
-                        case"12":
-                            case"13":
-                                case"14":
-                                    case"15":
-                                        case"16":
-                                            case"17":
-                                                case"18":time = receivedMessage;
-                                                    returnMenu(chatId,time);
-                                                    break;
-                                                    case "Выключить уведомления":
-                                                        time = "Оповещения отключены";
-                                                        returnMenu(chatId,time);
-                                            break;
+            case "10":
+            case "11":
+            case "12":
+            case "13":
+            case "14":
+            case "15":
+            case "16":
+            case "17":
+            case "18":
+                time = receivedMessage;
+                returnMenu(chatId, time);
+                break;
+            case "Выключить уведомления":
+                time = "Оповещения отключены";
+                returnMenu(chatId, time);
+                break;
 
             case "/get":
-                String answer = BANK.getCurrency(currency, df);
-                getInfo(chatId, answer);
+                if (isOne) {
+                    String answer = BANK.getCurrency(currency, df);
+                    getInfo(chatId, answer);
+                } else {
+                    String answer = BANK.getCurrency("USD", df) + " " + BANK.getCurrency("EUR", df);
+                    getInfo(chatId, answer);
+                }
                 break;
             default:
                 break;
         }
     }
 
-    private void setTime(long chatId, String time){
+    private void setTime(long chatId, String time) {
         SendMessage message = new SendMessage();
         message.setChatId(chatId);
         message.setText("Выберите время оповещения. \n " +
@@ -152,7 +185,7 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands {
         message.setReplyMarkup(Buttons.initTimeKeyboard());
         try {
             execute(message);
-        }catch (TelegramApiException e){
+        } catch (TelegramApiException e) {
             e.printStackTrace();
         }
     }
