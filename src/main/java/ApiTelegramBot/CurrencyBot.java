@@ -122,18 +122,19 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands {
             case "/Chosen":
                 if (!isUsd && !isEur) {
                     isOne = true;
-                    returnMenu(chatId, "Обрано валюту USD");
+                    currency = "USD";
+                    returnMenu(chatId, "валюту за замовчуванням: USD");
                 } else if (isUsd && isEur) {
                     isOne = false;
-                    returnMenu(chatId, "Обрано валюти USD та EUR");
-                } else if (isUsd && !isEur) {
+                    returnMenu(chatId, "валюти: USD та EUR");
+                } else if (isUsd) {
                     isOne = true;
                     currency = "USD";
-                    returnMenu(chatId, "Обрано валюту " + currency);
-                } else if (!isUsd && isEur) {
+                    returnMenu(chatId, "валюту: " + currency);
+                } else {
                     isOne = true;
                     currency = "EUR";
-                    returnMenu(chatId, "Обрано валюту " + currency);
+                    returnMenu(chatId, "валюту: " + currency);
                 }
                 break;
             case "9":
@@ -184,7 +185,7 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands {
     private void returnMenu(long chatId, String text) {
         SendMessage message = new SendMessage();
         message.setChatId(chatId);
-        message.setText("Вы выбрали " + text);
+        message.setText("Ви обрали " + text);
         message.setReplyMarkup(Buttons.startMarkup());
         try {
             execute(message);
