@@ -27,12 +27,12 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands {
 
     @Override
     public String getBotUsername() {
-        return "TryButtons_bot";
+        return "botName";
     }
 
     @Override
     public String getBotToken() {
-        return "6288500881:AAHXD11jLHI3OrTIVd3ynfwLYc3R9lGN9qo";
+        return "BotToken";
     }
 
     public CurrencyBot() {
