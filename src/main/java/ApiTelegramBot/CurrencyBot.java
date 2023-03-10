@@ -21,7 +21,6 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands {
     private static DecimalFormat df = new DecimalFormat();
     private static String time = "18";
     private static String currency = "USD";
-    private static int count = 0;
     private static boolean isUsd = false;
     private static boolean isEur = false;
     private static boolean isOne = true;
@@ -114,35 +113,27 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands {
                 returnMenu(chatId, "Банк НБУ");
                 BANK = new NBUService();
                 break;
-            case "USD":
+            case "/USD":
                 isUsd = !isUsd;
-                if (isUsd && !isEur) {
-                    currency = "USD";
-                    isOne = true;
-                } else if (!isUsd && isEur) {
-                    currency = "EUR";
-                    isOne = true;
-                } else {
-                    isOne = false;
-                }
                 break;
-            case "EUR":
-                isEur = !isUsd;
-                if (!isUsd && isEur) {
-                    currency = "EUR";
-                    isOne = true;
-                } else if (isUsd && !isEur) {
-                    currency = "USD";
-                    isOne = true;
-                }else {
-                    isOne = false;
-                }
+            case "/EUR":
+                isEur = !isEur;
                 break;
             case "/Chosen":
-                if (isOne) {
-                    returnMenu(chatId, currency);
-                } else {
-                    returnMenu(chatId, "USD та EUR");
+                if (!isUsd && !isEur) {
+                    isOne = true;
+                    returnMenu(chatId, "Обрано валюту USD");
+                } else if (isUsd && isEur) {
+                    isOne = false;
+                    returnMenu(chatId, "Обрано валюти USD та EUR");
+                } else if (isUsd && !isEur) {
+                    isOne = true;
+                    currency = "USD";
+                    returnMenu(chatId, "Обрано валюту " + currency);
+                } else if (!isUsd && isEur) {
+                    isOne = true;
+                    currency = "EUR";
+                    returnMenu(chatId, "Обрано валюту " + currency);
                 }
                 break;
             case "9":
@@ -164,13 +155,13 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands {
                 break;
 
             case "/get":
+                String answer;
                 if (isOne) {
-                    String answer = BANK.getCurrency(currency, df);
-                    getInfo(chatId, answer);
+                    answer = BANK.getCurrency(currency, df);
                 } else {
-                    String answer = BANK.getCurrency("USD", df) + " " + BANK.getCurrency("EUR", df);
-                    getInfo(chatId, answer);
+                    answer = BANK.getCurrency("USD", df) + "\n" + BANK.getCurrency("EUR", df);
                 }
+                getInfo(chatId, answer);
                 break;
             default:
                 break;

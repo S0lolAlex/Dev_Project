@@ -39,8 +39,8 @@ public class Buttons {
         PRIVATE_BUTTON.setCallbackData("/Private");
         MONO_BUTTON.setCallbackData("/Mono");
         NBU_BUTTON.setCallbackData("/NBU");
-        EUR_BUTTON.setCallbackData("EUR");
-        USD_BUTTON.setCallbackData("USD");
+        EUR_BUTTON.setCallbackData("/EUR");
+        USD_BUTTON.setCallbackData("/USD");
         CURRENCY_CHOOSE_BUTTON.setCallbackData("/Chosen");
     }
 
