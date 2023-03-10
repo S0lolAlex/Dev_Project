@@ -32,7 +32,7 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands {
 
     @Override
     public String getBotToken() {
-        return "BotToken";
+        return "botToken";
     }
 
     public CurrencyBot() {
@@ -113,129 +113,37 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands {
                 BANK = new NBUService();
                 break;
             case "9":
-                schedules.put(chatId, new NotificationScheduler(9, new DailyNotification() {
-
-                    @Override
-                    public void run() {
-                        String answer = BANK.getCurrency("USD", df);
-                        getInfo(chatId, answer);
-                    }
-                }));
-                schedules.get(chatId).start();
-                time = "9";
-                returnMenu(chatId,time);
+                startSchedule(receivedMessage, chatId, 9);
                 break;
             case "10":
-                schedules.put(chatId, new NotificationScheduler(10, new DailyNotification() {
-                    @Override
-                    public void run() {
-                        String answer = BANK.getCurrency("USD", df);
-                        getInfo(chatId, answer);
-                    }
-                }));
-                schedules.get(chatId).start();
-                time = "10";
-                returnMenu(chatId,time);
+                startSchedule(receivedMessage, chatId, 10);
                 break;
             case"11":
-                schedules.put(chatId, new NotificationScheduler(11, new DailyNotification() {
-                    @Override
-                    public void run() {
-                        String answer = BANK.getCurrency("USD", df);
-                        getInfo(chatId, answer);
-                    }
-                }));
-                schedules.get(chatId).start();
-                time = "11";
-                returnMenu(chatId,time);
+                startSchedule(receivedMessage, chatId, 11);
                 break;
             case "12":
-                schedules.put(chatId, new NotificationScheduler(12, new DailyNotification() {
-                    @Override
-                    public void run() {
-                        String answer = BANK.getCurrency("USD", df);
-                        getInfo(chatId, answer);
-                    }
-                }));
-                schedules.get(chatId).start();
-                time = "12";
-                returnMenu(chatId,time);
+                startSchedule(receivedMessage, chatId, 12);
                 break;
             case "13":
-                schedules.put(chatId, new NotificationScheduler(13, new DailyNotification() {
-                    @Override
-                    public void run() {
-                        String answer = BANK.getCurrency("USD", df);
-                        getInfo(chatId, answer);
-                    }
-                }));
-                schedules.get(chatId).start();
-                time = "13";
-                returnMenu(chatId,time);
+                startSchedule(receivedMessage, chatId, 13);
                 break;
             case "14":
-                schedules.put(chatId, new NotificationScheduler(14, new DailyNotification() {
-                    @Override
-                    public void run() {
-                        String answer = BANK.getCurrency("USD", df);
-                        getInfo(chatId, answer);
-                    }
-                }));
-                schedules.get(chatId).start();
-                time = "14";
-                returnMenu(chatId,time);
+                startSchedule(receivedMessage, chatId, 14);
                 break;
             case"15":
-                schedules.put(chatId, new NotificationScheduler(15, new DailyNotification() {
-                    @Override
-                    public void run() {
-                        String answer = BANK.getCurrency("USD", df);
-                        getInfo(chatId, answer);
-                    }
-                }));
-                schedules.get(chatId).start();
-                time = "15";
-                returnMenu(chatId,time);
+                startSchedule(receivedMessage, chatId, 15);
                 break;
             case"16":
-                schedules.put(chatId, new NotificationScheduler(16, new DailyNotification() {
-                    @Override
-                    public void run() {
-                        String answer = BANK.getCurrency("USD", df);
-                        getInfo(chatId, answer);
-                    }
-                }));
-                schedules.get(chatId).start();
-                time = "16";
-                returnMenu(chatId,time);
+                startSchedule(receivedMessage, chatId, 16);
                 break;
             case"17":
-                schedules.put(chatId, new NotificationScheduler(17, new DailyNotification() {
-                    @Override
-                    public void run() {
-                        String answer = BANK.getCurrency("USD", df);
-                        getInfo(chatId, answer);
-                    }
-                }));
-                schedules.get(chatId).start();
-                time = "17";
-                returnMenu(chatId,time);
+                startSchedule(receivedMessage, chatId, 17);
                 break;
             case "18":
-                schedules.put(chatId, new NotificationScheduler(18, new DailyNotification() {
-                    @Override
-                    public void run() {
-                        String answer = BANK.getCurrency("USD", df);
-                        getInfo(chatId, answer);
-                    }
-                }));
-                schedules.get(chatId).start();
-                time = "18";
-                returnMenu(chatId,time);
+                startSchedule(receivedMessage, chatId, 18);
                 break;
             case "Выключить уведомления":
-                schedules.get(chatId).stop();
-                schedules.remove(chatId);
+                stopSchedule(chatId);
                 time = "Оповещения отключены";
                 returnMenu(chatId,time);
                 break;
@@ -245,6 +153,24 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands {
                 break;
             default:
                 break;
+        }
+    }
+
+    private void startSchedule(String receivedMessage, long chatId, int hours) {
+        stopSchedule(chatId);
+        schedules.put(chatId, new NotificationScheduler(hours, () -> {
+            String answer = BANK.getCurrency("USD", df);
+            getInfo(chatId, answer);
+        }));
+        schedules.get(chatId).start();
+        time = receivedMessage;
+        returnMenu(chatId,time);
+    }
+    
+    private void stopSchedule(long chatId) {
+        if (schedules.get(chatId) != null) {
+            schedules.get(chatId).stop();
+            schedules.remove(chatId);
         }
     }
 
