@@ -23,6 +23,8 @@ public class NotificationScheduler {
         if (now.compareTo(nextRun) > 0)
             nextRun = nextRun.plusDays(1);
 
+        System.out.println("next run = " + nextRun);
+
         Duration duration = Duration.between(now, nextRun);
         long initialDelay = duration.getSeconds();
 
