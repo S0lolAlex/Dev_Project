@@ -18,7 +18,6 @@ public class PrivatService implements BanksUtil {
 
     @Override
     public String getCurrency(String command, DecimalFormat df) {
-        if (command.equals("USD") | command.equals("EUR")) {
             try {
                 String response = Jsoup.connect(URL).ignoreContentType(true).get().body().text();
                 List<Privat> responseDtos = convertResponseToList(response);
@@ -30,10 +29,8 @@ public class PrivatService implements BanksUtil {
                         +" buy = " + df.format(dto.getBuy()))
                         .collect(Collectors.joining(""));
             } catch (IOException ignored) {
-
+                return "Проблеми на сервері";
             }
-        }
-        return "такой валюты нет повтори";
     }
 
     private List<Privat> convertResponseToList(String response) {

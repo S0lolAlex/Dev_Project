@@ -20,7 +20,7 @@ public class Privat {
                 " to " + base_ccy +
                 "\n by this course:\n" +
                 " buy = " + buy +
-                ", sale=" + sale +
+                ", sale= " + sale +
                 '}';
     }
 }
