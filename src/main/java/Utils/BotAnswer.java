@@ -1,5 +1,6 @@
 package Utils;
 
+import lombok.Getter;
 import org.dto.MonobankService;
 import org.dto.NBUService;
 import org.dto.PrivatService;
@@ -8,6 +9,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
 import java.text.DecimalFormat;
 public class BotAnswer {
+    @Getter
     private static final MessageUtil MESSAGE_MENU = new MessageUtil();
     private static BanksUtil BANK = new PrivatService();
     private static DecimalFormat df = new DecimalFormat();
@@ -15,7 +17,10 @@ public class BotAnswer {
     private static boolean isEur = false;
     private static boolean isOne = true;
     private static String currency = "USD";
+    private static String CHAT_ID;
     public void botAnswerUtils(String receivedMessage, SendMessage message, String userName) {
+        CHAT_ID = message.getChatId();
+
         switch (receivedMessage) {
             case "/start":
                 MESSAGE_MENU.startBot(message, userName);
@@ -87,43 +92,43 @@ public class BotAnswer {
                 }
                 break;
             case "9":
-//                MESSAGE_MENU.startSchedule(messageAlert(), 9);
+                MESSAGE_MENU.startSchedule(messageAlert(),getAnswer(), 9);
                 MESSAGE_MENU.returnMenu(message,"Поточний час");
                 break;
             case "10":
- //               MESSAGE_MENU.startSchedule(messageAlert(), 10);
+                MESSAGE_MENU.startSchedule(messageAlert(),getAnswer(), 10);
                 MESSAGE_MENU.returnMenu(message,"текущее время");
                 break;
             case"11":
- //               MESSAGE_MENU.startSchedule(messageAlert(), 11);
+                MESSAGE_MENU.startSchedule(messageAlert(),getAnswer(), 11);
                 MESSAGE_MENU.returnMenu(message,"текущее время");
                 break;
             case"12":
- //               MESSAGE_MENU.startSchedule(message, 12);
+                MESSAGE_MENU.startSchedule(messageAlert(),getAnswer(),12);
                 MESSAGE_MENU.returnMenu(message,"текущее время");
                 break;
             case"13":
- //               MESSAGE_MENU.startSchedule(message, 13);
+                MESSAGE_MENU.startSchedule(messageAlert(),getAnswer(),13);
                 MESSAGE_MENU.returnMenu(message,"текущее время");
                 break;
             case"14":
-  //              MESSAGE_MENU.startSchedule(message, 14);
+                MESSAGE_MENU.startSchedule(messageAlert(),getAnswer(), 14);
                 MESSAGE_MENU.returnMenu(message,"текущее время");
                 break;
             case"15":
-//                MESSAGE_MENU.startSchedule(message, 15);
+                MESSAGE_MENU.startSchedule(messageAlert(),getAnswer(), 15);
                 MESSAGE_MENU.returnMenu(message,"текущее время");
                 break;
             case"16":
- //               MESSAGE_MENU.startSchedule(message, 16);
+                MESSAGE_MENU.startSchedule(messageAlert(),getAnswer(), 16);
                 MESSAGE_MENU.returnMenu(message,"текущее время");
                 break;
             case"17":
-  //              MESSAGE_MENU.startSchedule(message, 17);
+                MESSAGE_MENU.startSchedule(messageAlert(),getAnswer(),17);
                 MESSAGE_MENU.returnMenu(message,"текущее время");
                 break;
             case"18":
-//                MESSAGE_MENU.startSchedule(message, 18);
+                MESSAGE_MENU.startSchedule(messageAlert(),getAnswer(), 18);
                 MESSAGE_MENU.returnMenu(message,"текущее время");
                 break;
             case "Вимкнути оповіщення":
@@ -146,10 +151,10 @@ public class BotAnswer {
         }
         return answer;
     }
-//    private SendMessage messageAlert(){
-//        SendMessage message = new SendMessage();
-//        message.setChatId(CHAT_ID);
-//        message.setText(getAnswer());
-//        return message;
-//    }
+    private SendMessage messageAlert(){
+        SendMessage message = new SendMessage();
+        message.setChatId(CHAT_ID);
+        message.setText(getAnswer());
+        return message;
+    }
 }
