@@ -24,6 +24,7 @@ public class Buttons {
     private static final InlineKeyboardButton NBU_BUTTON = new InlineKeyboardButton("НБУ");
     private static final InlineKeyboardButton EUR_BUTTON = new InlineKeyboardButton("EUR");
     private static final InlineKeyboardButton USD_BUTTON = new InlineKeyboardButton("USD");
+    private static final InlineKeyboardButton CURRENCY_CHOOSE_BUTTON = new InlineKeyboardButton("Подтвердить");
 
 
     public static void initKeyboard(){
@@ -41,6 +42,7 @@ public class Buttons {
         NBU_BUTTON.setCallbackData("/NBU");
         EUR_BUTTON.setCallbackData("/EUR");
         USD_BUTTON.setCallbackData("/USD");
+        CURRENCY_CHOOSE_BUTTON.setCallbackData("/Chosen");
     }
 
 
@@ -93,25 +95,14 @@ public class Buttons {
 
         List<InlineKeyboardButton> eur = List.of(EUR_BUTTON);
         List<InlineKeyboardButton> usd = List.of(USD_BUTTON);
-        List<List<InlineKeyboardButton>> rowsInLine = List.of(usd,eur);
+        List<InlineKeyboardButton> chosen = List.of(CURRENCY_CHOOSE_BUTTON);
+        List<List<InlineKeyboardButton>> rowsInLine = List.of(usd,eur,chosen);
 
         InlineKeyboardMarkup markupInline = new InlineKeyboardMarkup();
         markupInline.setKeyboard(rowsInLine);
 
         return markupInline;
     }
-    public static InlineKeyboardMarkup setTime() {
-
-        List<InlineKeyboardButton> eur = List.of(EUR_BUTTON);
-        List<InlineKeyboardButton> usd = List.of(USD_BUTTON);
-        List<List<InlineKeyboardButton>> rowsInLine = List.of(usd,eur);
-
-        InlineKeyboardMarkup markupInline = new InlineKeyboardMarkup();
-        markupInline.setKeyboard(rowsInLine);
-
-        return markupInline;
-    }
-
     public static ReplyKeyboardMarkup initTimeKeyboard(){
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();;
 
