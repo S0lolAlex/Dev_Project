@@ -29,7 +29,7 @@ public class PrivatService implements BanksUtil {
                         +" buy = " + df.format(dto.getBuy()))
                         .collect(Collectors.joining(""));
             } catch (IOException ignored) {
-                return "Проблеми на сервері";
+                return "РџСЂРѕР±Р»РµРјРё РЅР° СЃРµСЂРІРµСЂС–";
             }
     }
 

@@ -28,7 +28,7 @@ public class NBUService implements BanksUtil {
                             + df.format(dto.getRate()))
                     .collect(Collectors.joining());
         } catch (IOException | IllegalArgumentException e) {
-            return "Проблеми на сервері";
+            return "РџСЂРѕР±Р»РµРјРё РЅР° СЃРµСЂРІРµСЂС–";
         }
     }
 
