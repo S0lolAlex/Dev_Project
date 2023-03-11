@@ -7,16 +7,16 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-
-import java.security.Key;
+import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 import java.util.ArrayList;
 import java.util.List;
 public class SimpleBot extends TelegramLongPollingBot {
 
-    public static void main(String[] args) {
-        //ApiContextInitializer.init();
-        TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
+    public static void main(String[] args) throws TelegramApiException {
+
+        TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
         try {
+
             telegramBotsApi.registerBot(new SimpleBot());
         } catch (TelegramApiException e) {
             e.printStackTrace();
@@ -25,30 +25,33 @@ public class SimpleBot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return "botname";
+        return "MySecond33Bot";
     }
 
     @Override
     public String getBotToken() {
-        return "bottoken";
+        return "5635682179:AAEI2l_OhvqgUJrAZqodFyYlQghie9lpx5E";
     }
 
     public void onUpdateReceived(Update update) {
         Message message = update.getMessage();
         if (message != null && message.hasText()) {
+            
             switch (message.getText()) {
-                case "/start":
-                    sendMsg(message, "Это команда старт!");
+                case "Інформація":
+
+                    sendMsg(message, "Інформація");
+                    sendMsg(message, "Інформація2");
+                    //System.out.println(message.getText());
+                    break;
+                case "Налаштування":
+                    sendMsg(message, "Настройки");
                     System.out.println(message.getText());
                     break;
-                case "Команда 1":
-                    sendMsg(message, "Это команда 1");
-                    System.out.println(message.getText());
-                    break;
-                case "Команда 2":
+              /*  case "Команда 2":
                     sendMsg(message, "Это команда 2");
                     System.out.println(message.getText());
-                    break;
+                    break; */
                 default:
                     sendMsg(message, "Это дефолт! Брейк!");
                     System.out.println(message.getText());
@@ -75,18 +78,18 @@ public class SimpleBot extends TelegramLongPollingBot {
         // Первая строчка клавиатуры
         KeyboardRow keyboardFirstRow = new KeyboardRow();
         // Добавляем кнопки в первую строчку клавиатуры
-        keyboardFirstRow.add("Команда 1");
-        keyboardFirstRow.add("Команда 2");
+        keyboardFirstRow.add("Інформація");
+        keyboardFirstRow.add("Налаштування");
 
         // Вторая строчка клавиатуры
-        KeyboardRow keyboardSecondRow = new KeyboardRow();
+       // KeyboardRow keyboardSecondRow = new KeyboardRow();
         // Добавляем кнопки во вторую строчку клавиатуры
-        keyboardSecondRow.add("Команда 3");
-        keyboardSecondRow.add("Команда 4");
+      //  keyboardSecondRow.add("Команда 3");
+      //  keyboardSecondRow.add("Команда 4");
 
         // Добавляем все строчки клавиатуры в список
         keyboard.add(keyboardFirstRow);
-        keyboard.add(keyboardSecondRow);
+        // keyboard.add(keyboardSecondRow);
         // и устанавливаем этот список нашей клавиатуре
         replyKeyboardMarkup.setKeyboard(keyboard);
 
@@ -104,4 +107,4 @@ public class SimpleBot extends TelegramLongPollingBot {
 
 
 
-}
+
