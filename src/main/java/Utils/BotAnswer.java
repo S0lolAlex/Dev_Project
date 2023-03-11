@@ -15,9 +15,12 @@ public class BotAnswer {
     private static boolean isEur = false;
     private static boolean isOne = true;
     private static String currency = "USD";
+    private static long CHAT_ID = 0;
     public void botAnswerUtils(String receivedMessage, SendMessage message, String userName) {
+        CHAT_ID = Long.getLong(message.getChatId());
         switch (receivedMessage) {
             case "/start":
+
                 MESSAGE_MENU.startBot(message, userName);
                 break;
             case "/help":
@@ -87,32 +90,69 @@ public class BotAnswer {
                 }
                 break;
             case "09":
+                MESSAGE_MENU.startSchedule(messageAlert(), 9);
+                MESSAGE_MENU.returnMenu(message,"текущее время");
+                break;
             case "10":
+                MESSAGE_MENU.startSchedule(messageAlert(), 10);
+                MESSAGE_MENU.returnMenu(message,"текущее время");
+                break;
             case"11":
+                MESSAGE_MENU.startSchedule(messageAlert(), 11);
+                MESSAGE_MENU.returnMenu(message,"текущее время");
+                break;
             case"12":
+                MESSAGE_MENU.startSchedule(message, 12);
+                MESSAGE_MENU.returnMenu(message,"текущее время");
+                break;
             case"13":
+                MESSAGE_MENU.startSchedule(message, 13);
+                MESSAGE_MENU.returnMenu(message,"текущее время");
+                break;
             case"14":
+                MESSAGE_MENU.startSchedule(message, 14);
+                MESSAGE_MENU.returnMenu(message,"текущее время");
+                break;
             case"15":
+                MESSAGE_MENU.startSchedule(message, 15);
+                MESSAGE_MENU.returnMenu(message,"текущее время");
+                break;
             case"16":
+                MESSAGE_MENU.startSchedule(message, 16);
+                MESSAGE_MENU.returnMenu(message,"текущее время");
+                break;
             case"17":
+                MESSAGE_MENU.startSchedule(message, 17);
+                MESSAGE_MENU.returnMenu(message,"текущее время");
+                break;
             case"18":
-                MESSAGE_MENU.returnMenu(message,receivedMessage);
+                MESSAGE_MENU.startSchedule(message, 18);
+                MESSAGE_MENU.returnMenu(message,"текущее время");
                 break;
             case "Вимкнути оповіщення":
-                MESSAGE_MENU.returnMenu(message,receivedMessage);
+                MessageUtil.getShedule().stop();
+                MESSAGE_MENU.returnMenu(message, "time");
                 break;
-
             case "/get":
-                String answer;
-                if (isOne) {
-                    answer = BANK.getCurrency(currency, df);
-                } else {
-                    answer = BANK.getCurrency("USD", df) + "\n" + BANK.getCurrency("EUR", df);
-                }
-                MESSAGE_MENU.getInfo(message, answer);
+                MESSAGE_MENU.getInfo(message, getAnswer());
                 break;
             default:
                 break;
         }
+    }
+    private String getAnswer(){
+        String answer;
+        if (isOne) {
+            answer = BANK.getCurrency(currency, df);
+        } else {
+            answer = BANK.getCurrency("USD", df) + "\n" + BANK.getCurrency("EUR", df);
+        }
+        return answer;
+    }
+    private SendMessage messageAlert(){
+        SendMessage message = new SendMessage();
+        message.setChatId(CHAT_ID);
+        message.setText(getAnswer());
+        return message;
     }
 }

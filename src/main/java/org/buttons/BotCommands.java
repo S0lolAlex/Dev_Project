@@ -10,8 +10,8 @@ public interface BotCommands {
                 new BotCommand("/help", "bot info")
         );
 
-        String HELP_TEXT = "This bot need for GoIt project  " +
-                "The following commands are available to you:\n\n" +
+        String HELP_TEXT = "Цей бот використовуэться для GoIt проэкту  " +
+                "доступні наступні комманди:\n\n" +
                 "/start - start the bot\n" +
                 "/help - help menu";
 }

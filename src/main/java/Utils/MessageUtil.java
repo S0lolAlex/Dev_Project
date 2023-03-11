@@ -1,13 +1,18 @@
 package Utils;
 
+import Utils.scheduler.NotificationScheduler;
+import lombok.Getter;
 import org.buttons.BotCommands;
 import org.buttons.Buttons;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class MessageUtil implements BotCommands {
+    @Getter
+    private static NotificationScheduler shedule = null;
     public void setTime(SendMessage message, String time){
-        message.setText("�������� ����� ����������. \n " +
-                "C����� ������� :" + time);
+        message.setText("Оберіть час оповіщення. \n " +
+                "Поточний час оповіщень :" + time);
         message.setReplyMarkup(Buttons.initTimeKeyboard());
     }
 
@@ -48,5 +53,17 @@ public class MessageUtil implements BotCommands {
     public void chooseCurrency(SendMessage message) {
         message.setText("Оберіть валюту");
         message.setReplyMarkup(Buttons.chooseCurrency());
+    }
+    public void startSchedule(SendMessage message, int hours) {
+        if(!shedule.isRun()){
+            shedule.stop();
+            shedule = new NotificationScheduler(hours, () -> {
+                try{
+                    execute(message);
+                }catch (TelegramApiException e){
+                    e.printStackTrace();
+                }
+            });}
+        shedule.start();
     }
 }
