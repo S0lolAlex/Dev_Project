@@ -19,6 +19,7 @@ public class NotificationScheduler {
 
     public void start() {
         ZonedDateTime now = ZonedDateTime.now();
+//todo remove after test        ZonedDateTime nextRun = now.plusSeconds(50);
         ZonedDateTime nextRun = now.withHour(hours).withMinute(0).withSecond(0);
         if (now.compareTo(nextRun) > 0)
             nextRun = nextRun.plusDays(1);
@@ -36,10 +37,11 @@ public class NotificationScheduler {
     }
 
     public void stop() {
-        scheduledFuture.cancel(true);
+        if (isRun())
+            scheduledFuture.cancel(true);
     }
 
-    public boolean isRun() {
+    public boolean isRun(){
         return scheduledFuture != null;
     }
 }

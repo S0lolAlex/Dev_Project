@@ -10,7 +10,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-public class CurrencyBot extends TelegramLongPollingBot implements BotCommands {
+public class CurrencyBot extends TelegramLongPollingBot implements BotCommands, MessageSender {
     private static final BotAnswer answer = new BotAnswer();
 
     @Override
@@ -46,12 +46,8 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands {
 
             if (update.getMessage().hasText()) {
                 reseive = update.getMessage().getText();
-                answer.botAnswerUtils(reseive,message,userName);
-                try{
-                    execute(message);
-                }catch (TelegramApiException e){
-                    e.printStackTrace();
-                }
+                answer.botAnswerUtils(reseive,message,userName, this);
+                sendMessage(message);
             }
         } else if (update.hasCallbackQuery()) {
             CHAT_ID = update.getCallbackQuery().getMessage().getChatId();
@@ -59,12 +55,16 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands {
             message.setChatId(CHAT_ID);
             userName = update.getCallbackQuery().getFrom().getFirstName();
             reseive = update.getCallbackQuery().getData();
-            answer.botAnswerUtils(reseive,message,userName);
-            try{
-                execute(message);
-            }catch (TelegramApiException e){
-                e.printStackTrace();
-            }
+            answer.botAnswerUtils(reseive,message,userName, this);
+            sendMessage(message);
+        }
+    }
+
+    public void sendMessage(SendMessage message) {
+        try {
+            execute(message);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
         }
     }
 }
