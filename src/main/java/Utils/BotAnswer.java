@@ -1,5 +1,6 @@
 package Utils;
 
+import ApiTelegramBot.MessageSender;
 import lombok.Getter;
 import org.dto.MonobankService;
 import org.dto.NBUService;
@@ -18,7 +19,7 @@ public class BotAnswer {
     private static boolean isOne = true;
     private static String currency = "USD";
     private static String CHAT_ID;
-    public void botAnswerUtils(String receivedMessage, SendMessage message, String userName) {
+    public void botAnswerUtils(String receivedMessage, SendMessage message, String userName, MessageSender sender) {
         CHAT_ID = message.getChatId();
 
         switch (receivedMessage) {
@@ -92,43 +93,43 @@ public class BotAnswer {
                 }
                 break;
             case "9":
-                MESSAGE_MENU.startSchedule(messageAlert(),getAnswer(), 9);
+                MESSAGE_MENU.startSchedule(messageAlert(),getAnswer(), 9, sender);
                 MESSAGE_MENU.returnMenu(message,"Поточний час");
                 break;
             case "10":
-                MESSAGE_MENU.startSchedule(messageAlert(),getAnswer(), 10);
+                MESSAGE_MENU.startSchedule(messageAlert(),getAnswer(), 10, sender);
                 MESSAGE_MENU.returnMenu(message,"текущее время");
                 break;
             case"11":
-                MESSAGE_MENU.startSchedule(messageAlert(),getAnswer(), 11);
+                MESSAGE_MENU.startSchedule(messageAlert(),getAnswer(), 11, sender);
                 MESSAGE_MENU.returnMenu(message,"текущее время");
                 break;
             case"12":
-                MESSAGE_MENU.startSchedule(messageAlert(),getAnswer(),12);
+                MESSAGE_MENU.startSchedule(messageAlert(),getAnswer(),12, sender);
                 MESSAGE_MENU.returnMenu(message,"текущее время");
                 break;
             case"13":
-                MESSAGE_MENU.startSchedule(messageAlert(),getAnswer(),13);
+                MESSAGE_MENU.startSchedule(messageAlert(),getAnswer(),13, sender);
                 MESSAGE_MENU.returnMenu(message,"текущее время");
                 break;
             case"14":
-                MESSAGE_MENU.startSchedule(messageAlert(),getAnswer(), 14);
+                MESSAGE_MENU.startSchedule(messageAlert(),getAnswer(), 14, sender);
                 MESSAGE_MENU.returnMenu(message,"текущее время");
                 break;
             case"15":
-                MESSAGE_MENU.startSchedule(messageAlert(),getAnswer(), 15);
+                MESSAGE_MENU.startSchedule(messageAlert(),getAnswer(), 15, sender);
                 MESSAGE_MENU.returnMenu(message,"текущее время");
                 break;
             case"16":
-                MESSAGE_MENU.startSchedule(messageAlert(),getAnswer(), 16);
+                MESSAGE_MENU.startSchedule(messageAlert(),getAnswer(), 16, sender);
                 MESSAGE_MENU.returnMenu(message,"текущее время");
                 break;
             case"17":
-                MESSAGE_MENU.startSchedule(messageAlert(),getAnswer(),17);
+                MESSAGE_MENU.startSchedule(messageAlert(),getAnswer(),17, sender);
                 MESSAGE_MENU.returnMenu(message,"текущее время");
                 break;
             case"18":
-                MESSAGE_MENU.startSchedule(messageAlert(),getAnswer(), 18);
+                MESSAGE_MENU.startSchedule(messageAlert(),getAnswer(), 18, sender);
                 MESSAGE_MENU.returnMenu(message,"текущее время");
                 break;
             case "Вимкнути оповіщення":

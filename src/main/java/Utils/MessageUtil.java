@@ -1,5 +1,6 @@
 package Utils;
 
+import ApiTelegramBot.MessageSender;
 import Utils.scheduler.NotificationScheduler;
 import lombok.Getter;
 import org.buttons.BotCommands;
@@ -54,14 +55,14 @@ public class MessageUtil implements BotCommands {
         message.setReplyMarkup(Buttons.chooseCurrency());
     }
 
-    public void startSchedule(SendMessage message, String text, int hours) {
+    public void startSchedule(SendMessage message, String text, int hours, MessageSender sender) {
         try {
             if (shedule == null) {
-                shedule = createScheduler(message, text, hours);
+                shedule = createScheduler(message, text, hours, sender);
             }
             if (shedule.isRun()) {
                 shedule.stop();
-                shedule = createScheduler(message, text, hours);
+                shedule = createScheduler(message, text, hours, sender);
             }
             shedule.start();
         } catch (Exception e) {
@@ -69,9 +70,10 @@ public class MessageUtil implements BotCommands {
         }
     }
 
-    private static NotificationScheduler createScheduler(SendMessage message, String text, int hours) {
+    private static NotificationScheduler createScheduler(SendMessage message, String text, int hours, MessageSender sender) {
         return new NotificationScheduler(hours, () -> {
             BotAnswer.getMESSAGE_MENU().getInfo(message, text);
+            sender.sendMessage(message);
         });
     }
 }
