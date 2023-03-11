@@ -86,7 +86,7 @@ public class BotAnswer {
                     MESSAGE_MENU.returnMenu(message, "Поточна валюта: " + currency);
                 }
                 break;
-            case "09":
+            case "9":
 //                MESSAGE_MENU.startSchedule(messageAlert(), 9);
                 MESSAGE_MENU.returnMenu(message,"Поточний час");
                 break;
