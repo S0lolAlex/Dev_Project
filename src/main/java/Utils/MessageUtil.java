@@ -6,8 +6,8 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
 public class MessageUtil implements BotCommands {
     public void setTime(SendMessage message, String time){
-        message.setText("Выберите время оповещения. \n " +
-                "Cейчас выбрано :" + time);
+        message.setText("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. \n " +
+                "CпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ :" + time);
         message.setReplyMarkup(Buttons.initTimeKeyboard());
     }
 
@@ -17,7 +17,7 @@ public class MessageUtil implements BotCommands {
     }
 
     public void startBot(SendMessage message,String userName) {
-        message.setText("Hi, " + userName + "! I'm a Telegram bot.'");
+        message.setText("РџСЂРёРІС–С‚, " + userName + "! РЇ РўРµР»РµРіСЂР°Рј Р±РѕС‚.'");
         message.setReplyMarkup(Buttons.startMarkup());
     }
 
@@ -31,22 +31,22 @@ public class MessageUtil implements BotCommands {
     }
 
     public void setSettings(SendMessage message) {
-        message.setText("Settings");
+        message.setText("РќР°Р»Р°С€С‚СѓРІР°РЅРЅСЏ");
         message.setReplyMarkup(Buttons.settingMarkup());
     }
 
     public void chooseBank(SendMessage message) {
-        message.setText("choose the bank");
+        message.setText("РћР±РµСЂС–С‚СЊ Р±Р°РЅРє");
         message.setReplyMarkup(Buttons.banks());
     }
 
     public void countFloatPoint(SendMessage message) {
-        message.setText("задайте кол-во знаков");
+        message.setText("РћР±РµСЂС–С‚СЊ РєС–Р»СЊРєС–СЃС‚СЊ Р·РЅР°РєС–РІ РїС–СЃР»СЏ РєРѕРјРё");
         message.setReplyMarkup(Buttons.setFloatPoint());
     }
 
     public void chooseCurrency(SendMessage message) {
-        message.setText("Какие валюты?");
+        message.setText("РћР±РµСЂС–С‚СЊ РІР°Р»СЋС‚Сѓ");
         message.setReplyMarkup(Buttons.chooseCurrency());
     }
 }

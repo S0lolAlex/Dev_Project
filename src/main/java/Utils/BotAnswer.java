@@ -36,18 +36,18 @@ public class BotAnswer {
                 MESSAGE_MENU.chooseCurrency(message);
                 break;
             case "/time":
-                MESSAGE_MENU.setTime(message,"getTime");
+                MESSAGE_MENU.setTime(message,"Задайте час оповіщень");
                 break;
             case "/2":
-                MESSAGE_MENU.returnMenu(message, "2 знака");
+                MESSAGE_MENU.returnMenu(message, "2 знаки");
                 df = new DecimalFormat("#0.00");
                 break;
             case "/3":
-                MESSAGE_MENU.returnMenu(message, "3 знака");
+                MESSAGE_MENU.returnMenu(message, "3 знаки");
                 df = new DecimalFormat("#0.000");
                 break;
             case "/4":
-                MESSAGE_MENU.returnMenu(message, "4 знака");
+                MESSAGE_MENU.returnMenu(message, "4 знаки");
                 df = new DecimalFormat("#0.0000");
                 break;
             case "/Private":
@@ -72,18 +72,18 @@ public class BotAnswer {
                 if (!isUsd && !isEur) {
                     isOne = true;
                     currency = "USD";
-                    MESSAGE_MENU.returnMenu(message, "По умолчанию: USD");
+                    MESSAGE_MENU.returnMenu(message, "За замовчуванням: USD");
                 } else if (isUsd && isEur) {
                     isOne = false;
-                    MESSAGE_MENU.returnMenu(message, "выбрано: USD и EUR");
+                    MESSAGE_MENU.returnMenu(message, "обрано: USD и EUR");
                 } else if (isUsd) {
                     isOne = true;
                     currency = "USD";
-                    MESSAGE_MENU.returnMenu(message, "текущая валюта: " + currency);
+                    MESSAGE_MENU.returnMenu(message, "Поточна валюта: " + currency);
                 } else {
                     isOne = true;
                     currency = "EUR";
-                    MESSAGE_MENU.returnMenu(message, "текущая валюта: " + currency);
+                    MESSAGE_MENU.returnMenu(message, "Поточна валюта: " + currency);
                 }
                 break;
             case "09":
@@ -98,7 +98,7 @@ public class BotAnswer {
             case"18":
                 MESSAGE_MENU.returnMenu(message,receivedMessage);
                 break;
-            case "Выключить уведомления":
+            case "Вимкнути оповіщення":
                 MESSAGE_MENU.returnMenu(message,receivedMessage);
                 break;
 
