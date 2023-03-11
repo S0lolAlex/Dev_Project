@@ -53,13 +53,25 @@ public class MessageUtil implements BotCommands {
         message.setText("Оберіть валюту");
         message.setReplyMarkup(Buttons.chooseCurrency());
     }
-    public void startSchedule(SendMessage message,String text, int hours) {
-        if(!shedule.isRun()){
-            shedule.stop();
-            shedule = new NotificationScheduler(hours, () -> {
-                    BotAnswer.getMESSAGE_MENU().getInfo(message,text);
 
-            });}
-        shedule.start();
+    public void startSchedule(SendMessage message, String text, int hours) {
+        try {
+            if (shedule == null) {
+                shedule = createScheduler(message, text, hours);
+            }
+            if (shedule.isRun()) {
+                shedule.stop();
+                shedule = createScheduler(message, text, hours);
+            }
+            shedule.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static NotificationScheduler createScheduler(SendMessage message, String text, int hours) {
+        return new NotificationScheduler(hours, () -> {
+            BotAnswer.getMESSAGE_MENU().getInfo(message, text);
+        });
     }
 }
