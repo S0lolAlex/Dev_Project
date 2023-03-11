@@ -39,30 +39,30 @@ public class BotAnswer {
                 MESSAGE_MENU.chooseCurrency(message);
                 break;
             case "/time":
-                MESSAGE_MENU.setTime(message,"Задайте час оповіщень");
+                MESSAGE_MENU.setTime(message,"Р—Р°РґР°Р№С‚Рµ С‡Р°СЃ РѕРїРѕРІС–С‰РµРЅСЊ");
                 break;
             case "/2":
-                MESSAGE_MENU.returnMenu(message, "2 знаки");
+                MESSAGE_MENU.returnMenu(message, "2 Р·РЅР°РєРё");
                 df = new DecimalFormat("#0.00");
                 break;
             case "/3":
-                MESSAGE_MENU.returnMenu(message, "3 знаки");
+                MESSAGE_MENU.returnMenu(message, "3 Р·РЅР°РєРё");
                 df = new DecimalFormat("#0.000");
                 break;
             case "/4":
-                MESSAGE_MENU.returnMenu(message, "4 знаки");
+                MESSAGE_MENU.returnMenu(message, "4 Р·РЅР°РєРё");
                 df = new DecimalFormat("#0.0000");
                 break;
             case "/Private":
-                MESSAGE_MENU.returnMenu(message, "ПриватБанк");
+                MESSAGE_MENU.returnMenu(message, "РџСЂРёРІР°С‚Р‘Р°РЅРє");
                 BANK = new PrivatService();
                 break;
             case "/Mono":
-                MESSAGE_MENU.returnMenu(message, "Монобанк");
+                MESSAGE_MENU.returnMenu(message, "РњРѕРЅРѕР±Р°РЅРє");
                 BANK = new MonobankService();
                 break;
             case "/NBU":
-                MESSAGE_MENU.returnMenu(message, "Банк НБУ");
+                MESSAGE_MENU.returnMenu(message, "Р‘Р°РЅРє РќР‘РЈ");
                 BANK = new NBUService();
                 break;
             case "/USD":
@@ -75,61 +75,61 @@ public class BotAnswer {
                 if (!isUsd && !isEur) {
                     isOne = true;
                     currency = "USD";
-                    MESSAGE_MENU.returnMenu(message, "За замовчуванням: USD");
+                    MESSAGE_MENU.returnMenu(message, "Р—Р° Р·Р°РјРѕРІС‡СѓРІР°РЅРЅСЏРј: USD");
                 } else if (isUsd && isEur) {
                     isOne = false;
-                    MESSAGE_MENU.returnMenu(message, "обрано: USD и EUR");
+                    MESSAGE_MENU.returnMenu(message, "РѕР±СЂР°РЅРѕ: USD Рё EUR");
                 } else if (isUsd) {
                     isOne = true;
                     currency = "USD";
-                    MESSAGE_MENU.returnMenu(message, "Поточна валюта: " + currency);
+                    MESSAGE_MENU.returnMenu(message, "РџРѕС‚РѕС‡РЅР° РІР°Р»СЋС‚Р°: " + currency);
                 } else {
                     isOne = true;
                     currency = "EUR";
-                    MESSAGE_MENU.returnMenu(message, "Поточна валюта: " + currency);
+                    MESSAGE_MENU.returnMenu(message, "РџРѕС‚РѕС‡РЅР° РІР°Р»СЋС‚Р°: " + currency);
                 }
                 break;
             case "09":
                 MESSAGE_MENU.startSchedule(messageAlert(), 9);
-                MESSAGE_MENU.returnMenu(message,"текущее время");
+                MESSAGE_MENU.returnMenu(message,"РџРѕС‚РѕС‡РЅРёР№ С‡Р°СЃ");
                 break;
             case "10":
                 MESSAGE_MENU.startSchedule(messageAlert(), 10);
-                MESSAGE_MENU.returnMenu(message,"текущее время");
+                MESSAGE_MENU.returnMenu(message,"С‚РµРєСѓС‰РµРµ РІСЂРµРјСЏ");
                 break;
             case"11":
                 MESSAGE_MENU.startSchedule(messageAlert(), 11);
-                MESSAGE_MENU.returnMenu(message,"текущее время");
+                MESSAGE_MENU.returnMenu(message,"С‚РµРєСѓС‰РµРµ РІСЂРµРјСЏ");
                 break;
             case"12":
                 MESSAGE_MENU.startSchedule(message, 12);
-                MESSAGE_MENU.returnMenu(message,"текущее время");
+                MESSAGE_MENU.returnMenu(message,"С‚РµРєСѓС‰РµРµ РІСЂРµРјСЏ");
                 break;
             case"13":
                 MESSAGE_MENU.startSchedule(message, 13);
-                MESSAGE_MENU.returnMenu(message,"текущее время");
+                MESSAGE_MENU.returnMenu(message,"С‚РµРєСѓС‰РµРµ РІСЂРµРјСЏ");
                 break;
             case"14":
                 MESSAGE_MENU.startSchedule(message, 14);
-                MESSAGE_MENU.returnMenu(message,"текущее время");
+                MESSAGE_MENU.returnMenu(message,"С‚РµРєСѓС‰РµРµ РІСЂРµРјСЏ");
                 break;
             case"15":
                 MESSAGE_MENU.startSchedule(message, 15);
-                MESSAGE_MENU.returnMenu(message,"текущее время");
+                MESSAGE_MENU.returnMenu(message,"С‚РµРєСѓС‰РµРµ РІСЂРµРјСЏ");
                 break;
             case"16":
                 MESSAGE_MENU.startSchedule(message, 16);
-                MESSAGE_MENU.returnMenu(message,"текущее время");
+                MESSAGE_MENU.returnMenu(message,"С‚РµРєСѓС‰РµРµ РІСЂРµРјСЏ");
                 break;
             case"17":
                 MESSAGE_MENU.startSchedule(message, 17);
-                MESSAGE_MENU.returnMenu(message,"текущее время");
+                MESSAGE_MENU.returnMenu(message,"С‚РµРєСѓС‰РµРµ РІСЂРµРјСЏ");
                 break;
             case"18":
                 MESSAGE_MENU.startSchedule(message, 18);
-                MESSAGE_MENU.returnMenu(message,"текущее время");
+                MESSAGE_MENU.returnMenu(message,"С‚РµРєСѓС‰РµРµ РІСЂРµРјСЏ");
                 break;
-            case "Вимкнути оповіщення":
+            case "Р’РёРјРєРЅСѓС‚Рё РѕРїРѕРІС–С‰РµРЅРЅСЏ":
                 MessageUtil.getShedule().stop();
                 MESSAGE_MENU.returnMenu(message, "time");
                 break;
