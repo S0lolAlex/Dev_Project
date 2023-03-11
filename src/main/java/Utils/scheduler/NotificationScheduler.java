@@ -19,8 +19,8 @@ public class NotificationScheduler {
 
     public void start() {
         ZonedDateTime now = ZonedDateTime.now();
-        ZonedDateTime nextRun = now.withHour(0).withMinute(hours).withSecond(0);
-        if(now.compareTo(nextRun) > 0)
+        ZonedDateTime nextRun = now.withHour(hours).withMinute(0).withSecond(0);
+        if (now.compareTo(nextRun) > 0)
             nextRun = nextRun.plusDays(1);
 
         Duration duration = Duration.between(now, nextRun);
@@ -37,7 +37,7 @@ public class NotificationScheduler {
         scheduledFuture.cancel(true);
     }
 
-    public boolean isRun(){
-        return scheduledFuture.isCancelled();
+    public boolean isRun() {
+        return scheduledFuture != null;
     }
 }
