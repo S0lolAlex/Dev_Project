@@ -36,24 +36,25 @@ public class SimpleBot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         Message message = update.getMessage();
         if (message != null && message.hasText()) {
-            
+
             switch (message.getText()) {
                 case "Інформація":
 
                     sendMsg(message, "Інформація");
-                    sendMsg(message, "Інформація2");
+
                     //System.out.println(message.getText());
                     break;
                 case "Налаштування":
-                    sendMsg(message, "Настройки");
+                    sendMsg(message, "Налаштування");
                     System.out.println(message.getText());
+                    
                     break;
               /*  case "Команда 2":
                     sendMsg(message, "Это команда 2");
                     System.out.println(message.getText());
                     break; */
                 default:
-                    sendMsg(message, "Это дефолт! Брейк!");
+                    sendMsg(message, "Щось треба натиснути");
                     System.out.println(message.getText());
                     break;
             }
@@ -79,17 +80,17 @@ public class SimpleBot extends TelegramLongPollingBot {
         KeyboardRow keyboardFirstRow = new KeyboardRow();
         // Добавляем кнопки в первую строчку клавиатуры
         keyboardFirstRow.add("Інформація");
-        keyboardFirstRow.add("Налаштування");
+        // keyboardFirstRow.add("Налаштування");
 
         // Вторая строчка клавиатуры
-       // KeyboardRow keyboardSecondRow = new KeyboardRow();
+        KeyboardRow keyboardSecondRow = new KeyboardRow();
         // Добавляем кнопки во вторую строчку клавиатуры
-      //  keyboardSecondRow.add("Команда 3");
+        keyboardSecondRow.add("Налаштування");
       //  keyboardSecondRow.add("Команда 4");
 
         // Добавляем все строчки клавиатуры в список
         keyboard.add(keyboardFirstRow);
-        // keyboard.add(keyboardSecondRow);
+        keyboard.add(keyboardSecondRow);
         // и устанавливаем этот список нашей клавиатуре
         replyKeyboardMarkup.setKeyboard(keyboard);
 
