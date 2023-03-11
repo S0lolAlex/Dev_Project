@@ -130,7 +130,7 @@ public class Buttons {
         thirdRow.add(new KeyboardButton("16"));
         thirdRow.add(new KeyboardButton("17"));
         lastRow.add(new KeyboardButton("18"));
-        lastRow.add(new KeyboardButton("Выключить уведомления"));
+        lastRow.add(new KeyboardButton("Вимкнути оповіщення"));
 
         replyKeyboardMarkup.setKeyboard(keyboardRows);
         return replyKeyboardMarkup;
