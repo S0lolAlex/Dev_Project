@@ -15,12 +15,9 @@ public class BotAnswer {
     private static boolean isEur = false;
     private static boolean isOne = true;
     private static String currency = "USD";
-    private static long CHAT_ID = 0;
     public void botAnswerUtils(String receivedMessage, SendMessage message, String userName) {
-        CHAT_ID = Long.getLong(message.getChatId());
         switch (receivedMessage) {
             case "/start":
-
                 MESSAGE_MENU.startBot(message, userName);
                 break;
             case "/help":
@@ -39,30 +36,30 @@ public class BotAnswer {
                 MESSAGE_MENU.chooseCurrency(message);
                 break;
             case "/time":
-                MESSAGE_MENU.setTime(message,"Р—Р°РґР°Р№С‚Рµ С‡Р°СЃ РѕРїРѕРІС–С‰РµРЅСЊ");
+                MESSAGE_MENU.setTime(message,"Задайте час оповіщень");
                 break;
             case "/2":
-                MESSAGE_MENU.returnMenu(message, "2 Р·РЅР°РєРё");
+                MESSAGE_MENU.returnMenu(message, "2 знаки");
                 df = new DecimalFormat("#0.00");
                 break;
             case "/3":
-                MESSAGE_MENU.returnMenu(message, "3 Р·РЅР°РєРё");
+                MESSAGE_MENU.returnMenu(message, "3 знаки");
                 df = new DecimalFormat("#0.000");
                 break;
             case "/4":
-                MESSAGE_MENU.returnMenu(message, "4 Р·РЅР°РєРё");
+                MESSAGE_MENU.returnMenu(message, "4 знаки");
                 df = new DecimalFormat("#0.0000");
                 break;
             case "/Private":
-                MESSAGE_MENU.returnMenu(message, "РџСЂРёРІР°С‚Р‘Р°РЅРє");
+                MESSAGE_MENU.returnMenu(message, "ПриватБанк");
                 BANK = new PrivatService();
                 break;
             case "/Mono":
-                MESSAGE_MENU.returnMenu(message, "РњРѕРЅРѕР±Р°РЅРє");
+                MESSAGE_MENU.returnMenu(message, "Монобанк");
                 BANK = new MonobankService();
                 break;
             case "/NBU":
-                MESSAGE_MENU.returnMenu(message, "Р‘Р°РЅРє РќР‘РЈ");
+                MESSAGE_MENU.returnMenu(message, "Банк НБУ");
                 BANK = new NBUService();
                 break;
             case "/USD":
@@ -75,61 +72,61 @@ public class BotAnswer {
                 if (!isUsd && !isEur) {
                     isOne = true;
                     currency = "USD";
-                    MESSAGE_MENU.returnMenu(message, "Р—Р° Р·Р°РјРѕРІС‡СѓРІР°РЅРЅСЏРј: USD");
+                    MESSAGE_MENU.returnMenu(message, "За замовчуванням: USD");
                 } else if (isUsd && isEur) {
                     isOne = false;
-                    MESSAGE_MENU.returnMenu(message, "РѕР±СЂР°РЅРѕ: USD Рё EUR");
+                    MESSAGE_MENU.returnMenu(message, "обрано: USD и EUR");
                 } else if (isUsd) {
                     isOne = true;
                     currency = "USD";
-                    MESSAGE_MENU.returnMenu(message, "РџРѕС‚РѕС‡РЅР° РІР°Р»СЋС‚Р°: " + currency);
+                    MESSAGE_MENU.returnMenu(message, "Поточна валюта: " + currency);
                 } else {
                     isOne = true;
                     currency = "EUR";
-                    MESSAGE_MENU.returnMenu(message, "РџРѕС‚РѕС‡РЅР° РІР°Р»СЋС‚Р°: " + currency);
+                    MESSAGE_MENU.returnMenu(message, "Поточна валюта: " + currency);
                 }
                 break;
             case "09":
-                MESSAGE_MENU.startSchedule(messageAlert(), 9);
-                MESSAGE_MENU.returnMenu(message,"РџРѕС‚РѕС‡РЅРёР№ С‡Р°СЃ");
+//                MESSAGE_MENU.startSchedule(messageAlert(), 9);
+                MESSAGE_MENU.returnMenu(message,"Поточний час");
                 break;
             case "10":
-                MESSAGE_MENU.startSchedule(messageAlert(), 10);
-                MESSAGE_MENU.returnMenu(message,"С‚РµРєСѓС‰РµРµ РІСЂРµРјСЏ");
+ //               MESSAGE_MENU.startSchedule(messageAlert(), 10);
+                MESSAGE_MENU.returnMenu(message,"текущее время");
                 break;
             case"11":
-                MESSAGE_MENU.startSchedule(messageAlert(), 11);
-                MESSAGE_MENU.returnMenu(message,"С‚РµРєСѓС‰РµРµ РІСЂРµРјСЏ");
+ //               MESSAGE_MENU.startSchedule(messageAlert(), 11);
+                MESSAGE_MENU.returnMenu(message,"текущее время");
                 break;
             case"12":
-                MESSAGE_MENU.startSchedule(message, 12);
-                MESSAGE_MENU.returnMenu(message,"С‚РµРєСѓС‰РµРµ РІСЂРµРјСЏ");
+ //               MESSAGE_MENU.startSchedule(message, 12);
+                MESSAGE_MENU.returnMenu(message,"текущее время");
                 break;
             case"13":
-                MESSAGE_MENU.startSchedule(message, 13);
-                MESSAGE_MENU.returnMenu(message,"С‚РµРєСѓС‰РµРµ РІСЂРµРјСЏ");
+ //               MESSAGE_MENU.startSchedule(message, 13);
+                MESSAGE_MENU.returnMenu(message,"текущее время");
                 break;
             case"14":
-                MESSAGE_MENU.startSchedule(message, 14);
-                MESSAGE_MENU.returnMenu(message,"С‚РµРєСѓС‰РµРµ РІСЂРµРјСЏ");
+  //              MESSAGE_MENU.startSchedule(message, 14);
+                MESSAGE_MENU.returnMenu(message,"текущее время");
                 break;
             case"15":
-                MESSAGE_MENU.startSchedule(message, 15);
-                MESSAGE_MENU.returnMenu(message,"С‚РµРєСѓС‰РµРµ РІСЂРµРјСЏ");
+//                MESSAGE_MENU.startSchedule(message, 15);
+                MESSAGE_MENU.returnMenu(message,"текущее время");
                 break;
             case"16":
-                MESSAGE_MENU.startSchedule(message, 16);
-                MESSAGE_MENU.returnMenu(message,"С‚РµРєСѓС‰РµРµ РІСЂРµРјСЏ");
+ //               MESSAGE_MENU.startSchedule(message, 16);
+                MESSAGE_MENU.returnMenu(message,"текущее время");
                 break;
             case"17":
-                MESSAGE_MENU.startSchedule(message, 17);
-                MESSAGE_MENU.returnMenu(message,"С‚РµРєСѓС‰РµРµ РІСЂРµРјСЏ");
+  //              MESSAGE_MENU.startSchedule(message, 17);
+                MESSAGE_MENU.returnMenu(message,"текущее время");
                 break;
             case"18":
-                MESSAGE_MENU.startSchedule(message, 18);
-                MESSAGE_MENU.returnMenu(message,"С‚РµРєСѓС‰РµРµ РІСЂРµРјСЏ");
+//                MESSAGE_MENU.startSchedule(message, 18);
+                MESSAGE_MENU.returnMenu(message,"текущее время");
                 break;
-            case "Р’РёРјРєРЅСѓС‚Рё РѕРїРѕРІС–С‰РµРЅРЅСЏ":
+            case "Вимкнути оповіщення":
                 MessageUtil.getShedule().stop();
                 MESSAGE_MENU.returnMenu(message, "time");
                 break;
@@ -149,10 +146,10 @@ public class BotAnswer {
         }
         return answer;
     }
-    private SendMessage messageAlert(){
-        SendMessage message = new SendMessage();
-        message.setChatId(CHAT_ID);
-        message.setText(getAnswer());
-        return message;
-    }
+//    private SendMessage messageAlert(){
+//        SendMessage message = new SendMessage();
+//        message.setChatId(CHAT_ID);
+//        message.setText(getAnswer());
+//        return message;
+//    }
 }

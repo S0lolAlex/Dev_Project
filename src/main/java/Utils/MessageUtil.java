@@ -7,12 +7,14 @@ import org.buttons.Buttons;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+
+
 public class MessageUtil implements BotCommands {
     @Getter
     private static NotificationScheduler shedule = null;
     public void setTime(SendMessage message, String time){
-        message.setText("ÐžÐ±ÐµÑ€Ñ–Ñ‚ÑŒ Ñ‡Ð°Ñ Ð¾Ð¿Ð¾Ð²Ñ–Ñ‰ÐµÐ½Ð½Ñ. \n " +
-                "ÐŸÐ¾Ñ‚Ð¾Ñ‡Ð½Ð¸Ð¹ Ñ‡Ð°Ñ Ð¾Ð¿Ð¾Ð²Ñ–Ñ‰ÐµÐ½ÑŒ :" + time);
+        message.setText("Îáåð³òü ÷àñ îïîâ³ùåííÿ. \n " +
+                "Ïîòî÷íèé ÷àñ îïîâ³ùåíü :" + time);
         message.setReplyMarkup(Buttons.initTimeKeyboard());
     }
 
@@ -22,7 +24,7 @@ public class MessageUtil implements BotCommands {
     }
 
     public void startBot(SendMessage message,String userName) {
-        message.setText("ÐŸÑ€Ð¸Ð²Ñ–Ñ‚, " + userName + "! Ð¯ Ð¢ÐµÐ»ÐµÐ³Ñ€Ð°Ð¼ Ð±Ð¾Ñ‚.'");
+        message.setText("Ïðèâ³ò, " + userName + "! ß Òåëåãðàì áîò.'");
         message.setReplyMarkup(Buttons.startMarkup());
     }
 
@@ -36,34 +38,34 @@ public class MessageUtil implements BotCommands {
     }
 
     public void setSettings(SendMessage message) {
-        message.setText("ÐÐ°Ð»Ð°ÑˆÑ‚ÑƒÐ²Ð°Ð½Ð½Ñ");
+        message.setText("Íàëàøòóâàííÿ");
         message.setReplyMarkup(Buttons.settingMarkup());
     }
 
     public void chooseBank(SendMessage message) {
-        message.setText("ÐžÐ±ÐµÑ€Ñ–Ñ‚ÑŒ Ð±Ð°Ð½Ðº");
+        message.setText("Îáåð³òü áàíê");
         message.setReplyMarkup(Buttons.banks());
     }
 
     public void countFloatPoint(SendMessage message) {
-        message.setText("ÐžÐ±ÐµÑ€Ñ–Ñ‚ÑŒ ÐºÑ–Ð»ÑŒÐºÑ–ÑÑ‚ÑŒ Ð·Ð½Ð°ÐºÑ–Ð² Ð¿Ñ–ÑÐ»Ñ ÐºÐ¾Ð¼Ð¸");
+        message.setText("Îáåð³òü ê³ëüê³ñòü çíàê³â ï³ñëÿ êîìè");
         message.setReplyMarkup(Buttons.setFloatPoint());
     }
 
     public void chooseCurrency(SendMessage message) {
-        message.setText("ÐžÐ±ÐµÑ€Ñ–Ñ‚ÑŒ Ð²Ð°Ð»ÑŽÑ‚Ñƒ");
+        message.setText("Îáåð³òü âàëþòó");
         message.setReplyMarkup(Buttons.chooseCurrency());
     }
-    public void startSchedule(SendMessage message, int hours) {
-        if(!shedule.isRun()){
-            shedule.stop();
-            shedule = new NotificationScheduler(hours, () -> {
-                try{
-                    execute(message);
-                }catch (TelegramApiException e){
-                    e.printStackTrace();
-                }
-            });}
-        shedule.start();
-    }
+//    public void startSchedule(SendMessage message, int hours) {
+//        if(!shedule.isRun()){
+//            shedule.stop();
+//            shedule = new NotificationScheduler(hours, () -> {
+//                try{
+//                    execute(message);
+//                }catch (TelegramApiException e){
+//                    e.printStackTrace();
+//                }
+//            });}
+//        shedule.start();
+//    }
 }
