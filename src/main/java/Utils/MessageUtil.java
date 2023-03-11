@@ -5,9 +5,6 @@ import lombok.Getter;
 import org.buttons.BotCommands;
 import org.buttons.Buttons;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-
-
 
 public class MessageUtil implements BotCommands {
     @Getter
@@ -56,16 +53,13 @@ public class MessageUtil implements BotCommands {
         message.setText("Оберіть валюту");
         message.setReplyMarkup(Buttons.chooseCurrency());
     }
-//    public void startSchedule(SendMessage message, int hours) {
-//        if(!shedule.isRun()){
-//            shedule.stop();
-//            shedule = new NotificationScheduler(hours, () -> {
-//                try{
-//                    execute(message);
-//                }catch (TelegramApiException e){
-//                    e.printStackTrace();
-//                }
-//            });}
-//        shedule.start();
-//    }
+    public void startSchedule(SendMessage message,String text, int hours) {
+        if(!shedule.isRun()){
+            shedule.stop();
+            shedule = new NotificationScheduler(hours, () -> {
+                    BotAnswer.getMESSAGE_MENU().getInfo(message,text);
+
+            });}
+        shedule.start();
+    }
 }
