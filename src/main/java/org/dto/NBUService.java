@@ -28,7 +28,7 @@ public class NBUService implements BanksUtil {
                             + df.format(dto.getRate()))
                     .collect(Collectors.joining());
         } catch (IOException | IllegalArgumentException e) {
-            return "такой валюты нет повтори";
+            return "Проблеми на сервері";
         }
     }
 

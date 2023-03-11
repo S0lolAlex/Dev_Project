@@ -29,7 +29,7 @@ public class MonobankService implements BanksUtil {
                             + " sell "+ df.format(dto.getRateSell()))
                     .collect(Collectors.joining());
         } catch (IOException | IllegalArgumentException e) {
-            return "нет такой валюты";
+            return "треба фіксити";
         }
     }
 

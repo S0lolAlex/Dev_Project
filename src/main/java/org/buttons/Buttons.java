@@ -10,21 +10,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Buttons {
-    private static final InlineKeyboardButton SETTINGS_BUTTON = new InlineKeyboardButton("Настройки");
-    private static final InlineKeyboardButton GET_INFO_BUTTON = new InlineKeyboardButton("Получить информацию");
-    private static final InlineKeyboardButton COUNT_BUTTON = new InlineKeyboardButton("Кол-во знаков после ,");
+    private static final InlineKeyboardButton SETTINGS_BUTTON = new InlineKeyboardButton("Налаштування");
+    private static final InlineKeyboardButton GET_INFO_BUTTON = new InlineKeyboardButton("Отримату інфо");
+    private static final InlineKeyboardButton COUNT_BUTTON = new InlineKeyboardButton("Кількість знаків після коми");
     private static final InlineKeyboardButton BANKS_BUTTON = new InlineKeyboardButton("Банк");
-    private static final InlineKeyboardButton CURRENCY_BUTTON = new InlineKeyboardButton("Валюты");
-    private static final InlineKeyboardButton TIME_BUTTON = new InlineKeyboardButton("Время оповещения");
-    private static final InlineKeyboardButton BUTTON_2 = new InlineKeyboardButton("2");
-    private static final InlineKeyboardButton BUTTON_3 = new InlineKeyboardButton("3");
-    private static final InlineKeyboardButton BUTTON_4 = new InlineKeyboardButton("4");
+    private static final InlineKeyboardButton CURRENCY_BUTTON = new InlineKeyboardButton("Валюти");
+    private static final InlineKeyboardButton TIME_BUTTON = new InlineKeyboardButton("Час оповіщення");
+    private static final InlineKeyboardButton BUTTON_2 = new InlineKeyboardButton("2 знаки");
+    private static final InlineKeyboardButton BUTTON_3 = new InlineKeyboardButton("3 знаки");
+    private static final InlineKeyboardButton BUTTON_4 = new InlineKeyboardButton("4 знаки");
     private static final InlineKeyboardButton PRIVATE_BUTTON = new InlineKeyboardButton("ПриватБанк");
     private static final InlineKeyboardButton MONO_BUTTON = new InlineKeyboardButton("МоноБанк");
     private static final InlineKeyboardButton NBU_BUTTON = new InlineKeyboardButton("НБУ");
     private static final InlineKeyboardButton EUR_BUTTON = new InlineKeyboardButton("EUR");
     private static final InlineKeyboardButton USD_BUTTON = new InlineKeyboardButton("USD");
-    private static final InlineKeyboardButton CURRENCY_CHOOSE_BUTTON = new InlineKeyboardButton("Подтвердить");
+    private static final InlineKeyboardButton CURRENCY_CHOOSE_BUTTON = new InlineKeyboardButton("Підтвердити");
 
 
     public static void initKeyboard(){
