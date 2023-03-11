@@ -10,21 +10,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Buttons {
-    private static final InlineKeyboardButton SETTINGS_BUTTON = new InlineKeyboardButton("Налаштування");
-    private static final InlineKeyboardButton GET_INFO_BUTTON = new InlineKeyboardButton("Отримату інфо");
-    private static final InlineKeyboardButton COUNT_BUTTON = new InlineKeyboardButton("Кількість знаків після коми");
-    private static final InlineKeyboardButton BANKS_BUTTON = new InlineKeyboardButton("Банк");
-    private static final InlineKeyboardButton CURRENCY_BUTTON = new InlineKeyboardButton("Валюти");
-    private static final InlineKeyboardButton TIME_BUTTON = new InlineKeyboardButton("Час оповіщення");
-    private static final InlineKeyboardButton BUTTON_2 = new InlineKeyboardButton("2 знаки");
-    private static final InlineKeyboardButton BUTTON_3 = new InlineKeyboardButton("3 знаки");
-    private static final InlineKeyboardButton BUTTON_4 = new InlineKeyboardButton("4 знаки");
-    private static final InlineKeyboardButton PRIVATE_BUTTON = new InlineKeyboardButton("ПриватБанк");
-    private static final InlineKeyboardButton MONO_BUTTON = new InlineKeyboardButton("МоноБанк");
-    private static final InlineKeyboardButton NBU_BUTTON = new InlineKeyboardButton("НБУ");
+    private static final InlineKeyboardButton SETTINGS_BUTTON = new InlineKeyboardButton("РќР°Р»Р°С€С‚СѓРІР°РЅРЅСЏ");
+    private static final InlineKeyboardButton GET_INFO_BUTTON = new InlineKeyboardButton("РћС‚СЂРёРјР°С‚Сѓ С–РЅС„Рѕ");
+    private static final InlineKeyboardButton COUNT_BUTTON = new InlineKeyboardButton("РљС–Р»СЊРєС–СЃС‚СЊ Р·РЅР°РєС–РІ РїС–СЃР»СЏ РєРѕРјРё");
+    private static final InlineKeyboardButton BANKS_BUTTON = new InlineKeyboardButton("Р‘Р°РЅРє");
+    private static final InlineKeyboardButton CURRENCY_BUTTON = new InlineKeyboardButton("Р’Р°Р»СЋС‚Рё");
+    private static final InlineKeyboardButton TIME_BUTTON = new InlineKeyboardButton("Р§Р°СЃ РѕРїРѕРІС–С‰РµРЅРЅСЏ");
+    private static final InlineKeyboardButton BUTTON_2 = new InlineKeyboardButton("2 Р·РЅР°РєРё");
+    private static final InlineKeyboardButton BUTTON_3 = new InlineKeyboardButton("3 Р·РЅР°РєРё");
+    private static final InlineKeyboardButton BUTTON_4 = new InlineKeyboardButton("4 Р·РЅР°РєРё");
+    private static final InlineKeyboardButton PRIVATE_BUTTON = new InlineKeyboardButton("РџСЂРёРІР°С‚Р‘Р°РЅРє");
+    private static final InlineKeyboardButton MONO_BUTTON = new InlineKeyboardButton("РњРѕРЅРѕР‘Р°РЅРє");
+    private static final InlineKeyboardButton NBU_BUTTON = new InlineKeyboardButton("РќР‘РЈ");
     private static final InlineKeyboardButton EUR_BUTTON = new InlineKeyboardButton("EUR");
     private static final InlineKeyboardButton USD_BUTTON = new InlineKeyboardButton("USD");
-    private static final InlineKeyboardButton CURRENCY_CHOOSE_BUTTON = new InlineKeyboardButton("Підтвердити");
+    private static final InlineKeyboardButton CURRENCY_CHOOSE_BUTTON = new InlineKeyboardButton("РџС–РґС‚РІРµСЂРґРёС‚Рё");
 
 
     public static void initKeyboard(){
@@ -130,7 +130,7 @@ public class Buttons {
         thirdRow.add(new KeyboardButton("16"));
         thirdRow.add(new KeyboardButton("17"));
         lastRow.add(new KeyboardButton("18"));
-        lastRow.add(new KeyboardButton("Вимкнути оповіщення"));
+        lastRow.add(new KeyboardButton("Р’РёРјРєРЅСѓС‚Рё РѕРїРѕРІС–С‰РµРЅРЅСЏ"));
 
         replyKeyboardMarkup.setKeyboard(keyboardRows);
         return replyKeyboardMarkup;
