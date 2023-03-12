@@ -1,5 +1,6 @@
 package Utils;
 
+import ApiTelegramBot.MessageSender;
 import Utils.scheduler.NotificationScheduler;
 import lombok.Getter;
 import org.buttons.BotCommands;
@@ -53,13 +54,26 @@ public class MessageUtil implements BotCommands {
         message.setText("Оберіть валюту");
         message.setReplyMarkup(Buttons.chooseCurrency());
     }
-    public void startSchedule(SendMessage message,String text, int hours) {
-        if(!shedule.isRun()){
-            shedule.stop();
-            shedule = new NotificationScheduler(hours, () -> {
-                    BotAnswer.getMESSAGE_MENU().getInfo(message,text);
 
-            });}
-        shedule.start();
+    public void startSchedule(SendMessage message, String text, int hours, MessageSender sender) {
+        try {
+            if (shedule == null) {
+                shedule = createScheduler(message, text, hours, sender);
+            }
+            if (shedule.isRun()) {
+                shedule.stop();
+                shedule = createScheduler(message, text, hours, sender);
+            }
+            shedule.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static NotificationScheduler createScheduler(SendMessage message, String text, int hours, MessageSender sender) {
+        return new NotificationScheduler(hours, () -> {
+            BotAnswer.getMESSAGE_MENU().getInfo(message, text);
+            sender.sendMessage(message);
+        });
     }
 }
