@@ -15,21 +15,28 @@ import java.util.stream.Collectors;
 
 public class MonobankService implements BanksUtil {
     private static final String URL = "https://api.monobank.ua/bank/currency";
+    long start = 0;
+    String response;
 
     @Override
     public String getCurrency(String command, DecimalFormat df) {
         try {
-            String response = Jsoup.connect(URL).ignoreContentType(true).get().body().text();
+            if ((start == 0) || (start + 60000 < System.currentTimeMillis())) {
+                response = Jsoup.connect(URL).ignoreContentType(true).get().body().text();
+                start = System.currentTimeMillis();
+            }
             List<Monobank> responseDtos = convertResponseToList(response);
             return responseDtos
                     .stream()
-                    .filter(dto -> dto.getCurrencyCodeA() == Currency.getInstance(command).getNumericCode())
+                    .filter(dto -> dto.getCurrencyCodeA() == Currency.getInstance(command).getNumericCode() && dto.getCurrencyCodeB() == 980)
                     .map(dto -> "Monobank: " + Currency.getInstance(command) +
                             " buy = " + df.format(dto.getRateBuy())
-                            + " sell "+ df.format(dto.getRateSell()))
+                            + " sell " + df.format(dto.getRateSell()))
                     .collect(Collectors.joining());
-        } catch (IOException | IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             return "нет такой валюты";
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
