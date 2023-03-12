@@ -27,8 +27,10 @@ public class NBUService implements BanksUtil {
                     .map(dto -> "NBU: " + Currency.getInstance(command) + "course = "
                             + df.format(dto.getRate()))
                     .collect(Collectors.joining());
-        } catch (IOException | IllegalArgumentException e) {
+        } catch (IOException e) {
             return "Проблеми на сервері";
+        }catch (IllegalArgumentException e){
+            return "такої валюти немає";
         }
     }
 

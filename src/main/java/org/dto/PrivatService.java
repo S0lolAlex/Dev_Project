@@ -28,8 +28,10 @@ public class PrivatService implements BanksUtil {
                         +" sell = " + df.format(dto.getSale())
                         +" buy = " + df.format(dto.getBuy()))
                         .collect(Collectors.joining(""));
-            } catch (IOException ignored) {
+            } catch (IOException e) {
                 return "Проблеми на сервері";
+            }catch (IllegalArgumentException e){
+                return "такої валюти немає";
             }
     }
 
