@@ -10,14 +10,15 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 public class MessageUtil implements BotCommands {
     @Getter
     private static NotificationScheduler shedule = null;
-    public void setTime(SendMessage message, String time){
+
+    public void setTime(SendMessage message, String time) {
         message.setText("Оберіть час оповіщення. \n " +
                 "Поточний час оповіщень :" + time);
         message.setReplyMarkup(Buttons.initTimeKeyboard());
     }
 
-    public void returnMenu(SendMessage message,String text) {
-        message.setText( text);
+    public void returnMenu(SendMessage message, String text) {
+        message.setText(text);
         message.setReplyMarkup(Buttons.startMarkup());
     }
 
@@ -26,7 +27,7 @@ public class MessageUtil implements BotCommands {
         message.setReplyMarkup(Buttons.startMarkup());
     }
 
-    public void getInfo(SendMessage message,String text) {
+    public void getInfo(SendMessage message, String text) {
         message.setText(text);
         message.setReplyMarkup(Buttons.startMarkup());
     }
@@ -54,23 +55,24 @@ public class MessageUtil implements BotCommands {
         message.setText("Оберіть валюту");
         message.setReplyMarkup(Buttons.chooseCurrency());
     }
-@NonNull
-public void startSchedule(String chatId, SendMessage message, String text, int hours, MessageSender sender) {
-    stopSchedule(chatId);
-    try {
-        BotAnswer.getSchedules().put(chatId, new NotificationScheduler(hours, () -> {
-            BotAnswer.getMESSAGE_MENU().getInfo(message, text);
-            sender.sendMessage(message);
-        }));
-        BotAnswer.getSchedules().get(chatId).start();
 
-    } catch (Exception e) {
-        e.printStackTrace();
+    @NonNull
+    public void startSchedule(String chatId, SendMessage message, String text, int hours, MessageSender sender) {
+        stopSchedule(chatId);
+        try {
+            BotAnswer.getSchedules().put(chatId, new NotificationScheduler(hours, () -> {
+                BotAnswer.getMESSAGE_MENU().getInfo(message, text);
+                sender.sendMessage(message);
+            }));
+            BotAnswer.getSchedules().get(chatId).start();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-}
 
     private void stopSchedule(String chatId) {
-        if (BotAnswer.getSchedules().get(chatId)!= null) {
+        if (BotAnswer.getSchedules().get(chatId) != null) {
             BotAnswer.getSchedules().get(chatId).stop();
             BotAnswer.getSchedules().remove(chatId);
         }

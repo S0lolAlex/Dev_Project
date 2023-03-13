@@ -11,6 +11,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+//Main class of TelegramBot
 public class CurrencyBot extends TelegramLongPollingBot implements BotCommands, MessageSender {
     private static final BotAnswer answer = new BotAnswer();
 
@@ -23,7 +24,7 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands, 
     public String getBotToken() {
         return "token";
     }
-
+//Bot constructor
     public CurrencyBot() {
         Buttons.initKeyboard();
         try {
@@ -32,7 +33,7 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands, 
             e.printStackTrace();
         }
     }
-
+//Main method that get message from chat
     @Override
     public void onUpdateReceived(Update update) {
         String reseive;
@@ -57,7 +58,7 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands, 
             sendMessage(message);
         }
     }
-
+//Send message in chat
     public void sendMessage(SendMessage message) {
         try {
             execute(message);

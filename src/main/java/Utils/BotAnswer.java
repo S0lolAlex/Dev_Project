@@ -166,7 +166,7 @@ public class BotAnswer {
                 break;
         }
     }
-
+    //return current currency by current user properties
     private String getAnswer(String chatId) {
         String answer;
         if (preferences.get(chatId).isOne()) {
@@ -178,7 +178,7 @@ public class BotAnswer {
         }
         return answer;
     }
-
+    //create message to alert
     private SendMessage messageAlert(String chatId) {
         SendMessage message = new SendMessage();
         message.setChatId(chatId);

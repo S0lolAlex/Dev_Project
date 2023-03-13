@@ -26,8 +26,8 @@ public class Buttons {
     private static final InlineKeyboardButton USD_BUTTON = new InlineKeyboardButton("USD");
     private static final InlineKeyboardButton CURRENCY_CHOOSE_BUTTON = new InlineKeyboardButton("Підтвердити");
 
-
-    public static void initKeyboard(){
+    //Init the callBack to Buttons
+    public static void initKeyboard() {
         SETTINGS_BUTTON.setCallbackData("/Settings");
         GET_INFO_BUTTON.setCallbackData("/get");
         COUNT_BUTTON.setCallbackData("/Count");
@@ -45,66 +45,72 @@ public class Buttons {
         CURRENCY_CHOOSE_BUTTON.setCallbackData("/Chosen");
     }
 
-
+    //Start menu keyboard
     public static InlineKeyboardMarkup startMarkup() {
         List<InlineKeyboardButton> start = List.of(SETTINGS_BUTTON);
         List<InlineKeyboardButton> getInfo = List.of(GET_INFO_BUTTON);
-        List<List<InlineKeyboardButton>> rowsInLine = List.of(start,getInfo);
+        List<List<InlineKeyboardButton>> rowsInLine = List.of(start, getInfo);
 
         InlineKeyboardMarkup markupInline = new InlineKeyboardMarkup();
         markupInline.setKeyboard(rowsInLine);
 
         return markupInline;
     }
+    //Setting menu keyboard
     public static InlineKeyboardMarkup settingMarkup() {
         List<InlineKeyboardButton> count = List.of(COUNT_BUTTON);
         List<InlineKeyboardButton> currency = List.of(CURRENCY_BUTTON);
         List<InlineKeyboardButton> banks = List.of(BANKS_BUTTON);
         List<InlineKeyboardButton> time = List.of(TIME_BUTTON);
-        List<List<InlineKeyboardButton>> rowsInLine = List.of(count, currency,banks,time);
+        List<List<InlineKeyboardButton>> rowsInLine = List.of(count, currency, banks, time);
 
         InlineKeyboardMarkup markupInline = new InlineKeyboardMarkup();
         markupInline.setKeyboard(rowsInLine);
 
         return markupInline;
     }
-    public static InlineKeyboardMarkup setFloatPoint(){
+    //keyboard of settings of count numbers after point
+    public static InlineKeyboardMarkup setFloatPoint() {
         List<InlineKeyboardButton> two = List.of(BUTTON_2);
         List<InlineKeyboardButton> three = List.of(BUTTON_3);
         List<InlineKeyboardButton> four = List.of(BUTTON_4);
-        List<List<InlineKeyboardButton>> rowsInLine = List.of(two,three,four);
+        List<List<InlineKeyboardButton>> rowsInLine = List.of(two, three, four);
 
         InlineKeyboardMarkup markupInline = new InlineKeyboardMarkup();
         markupInline.setKeyboard(rowsInLine);
 
         return markupInline;
     }
+    // keyboard of banks list
     public static InlineKeyboardMarkup banks() {
 
         List<InlineKeyboardButton> privat = List.of(PRIVATE_BUTTON);
         List<InlineKeyboardButton> monobank = List.of(MONO_BUTTON);
         List<InlineKeyboardButton> nbu = List.of(NBU_BUTTON);
-        List<List<InlineKeyboardButton>> rowsInLine = List.of(privat,monobank,nbu);
+        List<List<InlineKeyboardButton>> rowsInLine = List.of(privat, monobank, nbu);
 
         InlineKeyboardMarkup markupInline = new InlineKeyboardMarkup();
         markupInline.setKeyboard(rowsInLine);
 
         return markupInline;
     }
+    // keyboard of currency settings
     public static InlineKeyboardMarkup chooseCurrency() {
 
         List<InlineKeyboardButton> eur = List.of(EUR_BUTTON);
         List<InlineKeyboardButton> usd = List.of(USD_BUTTON);
         List<InlineKeyboardButton> chosen = List.of(CURRENCY_CHOOSE_BUTTON);
-        List<List<InlineKeyboardButton>> rowsInLine = List.of(usd,eur,chosen);
+        List<List<InlineKeyboardButton>> rowsInLine = List.of(usd, eur, chosen);
 
         InlineKeyboardMarkup markupInline = new InlineKeyboardMarkup();
         markupInline.setKeyboard(rowsInLine);
 
         return markupInline;
     }
-    public static ReplyKeyboardMarkup initTimeKeyboard(){
-        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();;
+    // settings of alert time keyboard
+    public static ReplyKeyboardMarkup initTimeKeyboard() {
+        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
+        ;
 
         replyKeyboardMarkup.setResizeKeyboard(true);
         replyKeyboardMarkup.setOneTimeKeyboard(true);
