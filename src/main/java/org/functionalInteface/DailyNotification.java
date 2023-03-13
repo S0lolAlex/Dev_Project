@@ -1,4 +1,4 @@
-package Utils.scheduler;
+package org.functionalInteface;
 
 public interface DailyNotification extends Runnable{
     @Override

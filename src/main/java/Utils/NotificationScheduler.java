@@ -1,4 +1,6 @@
-package Utils.scheduler;
+package Utils;
+
+import org.functionalInteface.DailyNotification;
 
 import java.time.Duration;
 import java.time.ZonedDateTime;
@@ -37,11 +39,6 @@ public class NotificationScheduler {
     }
 
     public void stop() {
-        if (isRun())
-            scheduledFuture.cancel(true);
-    }
-
-    public boolean isRun(){
-        return scheduledFuture != null;
+        scheduledFuture.cancel(true);
     }
 }

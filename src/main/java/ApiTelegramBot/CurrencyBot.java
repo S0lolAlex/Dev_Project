@@ -3,6 +3,7 @@ package ApiTelegramBot;
 import Utils.BotAnswer;
 import org.buttons.BotCommands;
 import org.buttons.Buttons;
+import org.functionalInteface.MessageSender;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -35,27 +36,24 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands, 
     @Override
     public void onUpdateReceived(Update update) {
         String reseive;
-        String userName;
         long CHAT_ID = 0;
 
         if (update.hasMessage()) {
             CHAT_ID = update.getMessage().getChatId();
             SendMessage message = new SendMessage();
             message.setChatId(CHAT_ID);
-            userName = update.getMessage().getFrom().getFirstName();
 
             if (update.getMessage().hasText()) {
                 reseive = update.getMessage().getText();
-                answer.botAnswerUtils(reseive,message,userName, this);
+                answer.botAnswerUtils(reseive,message, this);
                 sendMessage(message);
             }
         } else if (update.hasCallbackQuery()) {
             CHAT_ID = update.getCallbackQuery().getMessage().getChatId();
             SendMessage message = new SendMessage();
             message.setChatId(CHAT_ID);
-            userName = update.getCallbackQuery().getFrom().getFirstName();
             reseive = update.getCallbackQuery().getData();
-            answer.botAnswerUtils(reseive,message,userName, this);
+            answer.botAnswerUtils(reseive,message, this);
             sendMessage(message);
         }
     }

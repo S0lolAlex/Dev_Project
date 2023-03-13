@@ -1,8 +1,8 @@
 package Utils;
 
-import ApiTelegramBot.MessageSender;
-import Utils.scheduler.NotificationScheduler;
+import org.functionalInteface.MessageSender;
 import lombok.Getter;
+import lombok.NonNull;
 import org.buttons.BotCommands;
 import org.buttons.Buttons;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -11,8 +11,8 @@ public class MessageUtil implements BotCommands {
     @Getter
     private static NotificationScheduler shedule = null;
     public void setTime(SendMessage message, String time){
-        message.setText("ÐžÐ±ÐµÑ€Ñ–Ñ‚ÑŒ Ñ‡Ð°Ñ Ð¾Ð¿Ð¾Ð²Ñ–Ñ‰ÐµÐ½Ð½Ñ. \n " +
-                "ÐŸÐ¾Ñ‚Ð¾Ñ‡Ð½Ð¸Ð¹ Ñ‡Ð°Ñ Ð¾Ð¿Ð¾Ð²Ñ–Ñ‰ÐµÐ½ÑŒ :" + time);
+        message.setText("Îáåð³òü ÷àñ îïîâ³ùåííÿ. \n " +
+                "Ïîòî÷íèé ÷àñ îïîâ³ùåíü :" + time);
         message.setReplyMarkup(Buttons.initTimeKeyboard());
     }
 
@@ -21,8 +21,8 @@ public class MessageUtil implements BotCommands {
         message.setReplyMarkup(Buttons.startMarkup());
     }
 
-    public void startBot(SendMessage message,String userName) {
-        message.setText("ÐŸÑ€Ð¸Ð²Ñ–Ñ‚, " + userName + "! Ð¯ Ð¢ÐµÐ»ÐµÐ³Ñ€Ð°Ð¼ Ð±Ð¾Ñ‚.'");
+    public void startBot(SendMessage message) {
+        message.setText("Ëàñêàâî ïðîñèìî. Öåé áîò äîïîìîæå â³äñë³äêîâóâàòè àêòóàëüí³ êóðñè âàëþò");
         message.setReplyMarkup(Buttons.startMarkup());
     }
 
@@ -36,44 +36,43 @@ public class MessageUtil implements BotCommands {
     }
 
     public void setSettings(SendMessage message) {
-        message.setText("ÐÐ°Ð»Ð°ÑˆÑ‚ÑƒÐ²Ð°Ð½Ð½Ñ");
+        message.setText("Íàëàøòóâàííÿ");
         message.setReplyMarkup(Buttons.settingMarkup());
     }
 
     public void chooseBank(SendMessage message) {
-        message.setText("ÐžÐ±ÐµÑ€Ñ–Ñ‚ÑŒ Ð±Ð°Ð½Ðº");
+        message.setText("Îáåð³òü áàíê");
         message.setReplyMarkup(Buttons.banks());
     }
 
     public void countFloatPoint(SendMessage message) {
-        message.setText("ÐžÐ±ÐµÑ€Ñ–Ñ‚ÑŒ ÐºÑ–Ð»ÑŒÐºÑ–ÑÑ‚ÑŒ Ð·Ð½Ð°ÐºÑ–Ð² Ð¿Ñ–ÑÐ»Ñ ÐºÐ¾Ð¼Ð¸");
+        message.setText("Îáåð³òü ê³ëüê³ñòü çíàê³â ï³ñëÿ êîìè");
         message.setReplyMarkup(Buttons.setFloatPoint());
     }
 
     public void chooseCurrency(SendMessage message) {
-        message.setText("ÐžÐ±ÐµÑ€Ñ–Ñ‚ÑŒ Ð²Ð°Ð»ÑŽÑ‚Ñƒ");
+        message.setText("Îáåð³òü âàëþòó");
         message.setReplyMarkup(Buttons.chooseCurrency());
     }
-
-    public void startSchedule(SendMessage message, String text, int hours, MessageSender sender) {
-        try {
-            if (shedule == null) {
-                shedule = createScheduler(message, text, hours, sender);
-            }
-            if (shedule.isRun()) {
-                shedule.stop();
-                shedule = createScheduler(message, text, hours, sender);
-            }
-            shedule.start();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static NotificationScheduler createScheduler(SendMessage message, String text, int hours, MessageSender sender) {
-        return new NotificationScheduler(hours, () -> {
+@NonNull
+public void startSchedule(String chatId, SendMessage message, String text, int hours, MessageSender sender) {
+    stopSchedule(chatId);
+    try {
+        BotAnswer.getSchedules().put(chatId, new NotificationScheduler(hours, () -> {
             BotAnswer.getMESSAGE_MENU().getInfo(message, text);
             sender.sendMessage(message);
-        });
+        }));
+        BotAnswer.getSchedules().get(chatId).start();
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+    private void stopSchedule(String chatId) {
+        if (BotAnswer.getSchedules().get(chatId)!= null) {
+            BotAnswer.getSchedules().get(chatId).stop();
+            BotAnswer.getSchedules().remove(chatId);
+        }
     }
 }
