@@ -19,6 +19,10 @@ public class NotificationScheduler {
 
     public void start() {
         ZonedDateTime now = ZonedDateTime.now();
+<<<<<<< Updated upstream:src/main/java/org/scheduler/NotificationScheduler.java
+=======
+        //ZonedDateTime nextRun = now.plusSeconds(50); //delete after test
+>>>>>>> Stashed changes:src/main/java/Utils/scheduler/NotificationScheduler.java
         ZonedDateTime nextRun = now.withHour(hours).withMinute(0).withSecond(0);
         if(now.compareTo(nextRun) > 0)
             nextRun = nextRun.plusDays(1);
@@ -36,4 +40,8 @@ public class NotificationScheduler {
     public void stop() {
         scheduledFuture.cancel(true);
     }
+<<<<<<< Updated upstream:src/main/java/org/scheduler/NotificationScheduler.java
+=======
+
+>>>>>>> Stashed changes:src/main/java/Utils/scheduler/NotificationScheduler.java
 }
