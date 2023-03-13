@@ -45,27 +45,27 @@ public class BotAnswer {
                 MESSAGE_MENU.setTime(message, preferences.get(message.getChatId()).getTime());
                 break;
             case "/2":
-                MESSAGE_MENU.returnMenu(message, "2 знаки");
+                MESSAGE_MENU.returnMenu(message, "2 Р·РЅР°РєРё");
                 preferences.get(message.getChatId()).setDf(new DecimalFormat("#0.00"));
                 break;
             case "/3":
-                MESSAGE_MENU.returnMenu(message, "3 знаки");
+                MESSAGE_MENU.returnMenu(message, "3 Р·РЅР°РєРё");
                 preferences.get(message.getChatId()).setDf(new DecimalFormat("#0.000"));
                 break;
             case "/4":
-                MESSAGE_MENU.returnMenu(message, "4 знаки");
+                MESSAGE_MENU.returnMenu(message, "4 Р·РЅР°РєРё");
                 preferences.get(message.getChatId()).setDf(new DecimalFormat("#0.0000"));
                 break;
             case "/Private":
-                MESSAGE_MENU.returnMenu(message, "ПриватБанк");
+                MESSAGE_MENU.returnMenu(message, "РџСЂРёРІР°С‚Р‘Р°РЅРє");
                 preferences.get(message.getChatId()).setBank(new PrivatService());
                 break;
             case "/Mono":
-                MESSAGE_MENU.returnMenu(message, "Монобанк");
+                MESSAGE_MENU.returnMenu(message, "РњРѕРЅРѕР±Р°РЅРє");
                 preferences.get(message.getChatId()).setBank(new MonobankService());
                 break;
             case "/NBU":
-                MESSAGE_MENU.returnMenu(message, "Банк НБУ");
+                MESSAGE_MENU.returnMenu(message, "Р‘Р°РЅРє РќР‘РЈ");
                 preferences.get(message.getChatId()).setBank(new NBUService());
                 break;
             case "/USD":
@@ -78,86 +78,86 @@ public class BotAnswer {
                 if (!preferences.get(message.getChatId()).isUsd() && !preferences.get(message.getChatId()).isEur()) {
                     preferences.get(message.getChatId()).setOne(true);
                     preferences.get(message.getChatId()).setCurrency("USD");
-                    MESSAGE_MENU.returnMenu(message, "За замовчуванням: USD");
+                    MESSAGE_MENU.returnMenu(message, "Р—Р° Р·Р°РјРѕРІС‡СѓРІР°РЅРЅСЏРј: USD");
                 } else if (preferences.get(message.getChatId()).isUsd() && preferences.get(message.getChatId()).isEur()) {
                     preferences.get(message.getChatId()).setOne(false);
-                    MESSAGE_MENU.returnMenu(message, "Обрано: USD і EUR");
+                    MESSAGE_MENU.returnMenu(message, "РћР±СЂР°РЅРѕ: USD С– EUR");
                 } else if (preferences.get(message.getChatId()).isUsd()) {
                     preferences.get(message.getChatId()).setOne(true);
                     preferences.get(message.getChatId()).setCurrency("USD");
                     MESSAGE_MENU.returnMenu(message,
-                            "Поточна валюта: " + preferences.get(message.getChatId()).getCurrency());
+                            "РџРѕС‚РѕС‡РЅР° РІР°Р»СЋС‚Р°: " + preferences.get(message.getChatId()).getCurrency());
                 } else {
                     preferences.get(message.getChatId()).setOne(true);
                     preferences.get(message.getChatId()).setCurrency("EUR");
                     MESSAGE_MENU.returnMenu(message,
-                            "Поточна валюта: " + preferences.get(message.getChatId()).getCurrency());
+                            "РџРѕС‚РѕС‡РЅР° РІР°Р»СЋС‚Р°: " + preferences.get(message.getChatId()).getCurrency());
                 }
                 break;
             case "9":
                 MESSAGE_MENU.startSchedule(message.getChatId(),
                         messageAlert(message.getChatId()), getAnswer(message.getChatId()), 9, sender);
                 preferences.get(message.getChatId()).setTime("9");
-                MESSAGE_MENU.returnMenu(message, "Обраний час: " + preferences.get(message.getChatId()).getTime());
+                MESSAGE_MENU.returnMenu(message, "РћР±СЂР°РЅРёР№ С‡Р°СЃ: " + preferences.get(message.getChatId()).getTime());
                 break;
             case "10":
                 MESSAGE_MENU.startSchedule(message.getChatId(),
                         messageAlert(message.getChatId()), getAnswer(message.getChatId()), 10, sender);
                 preferences.get(message.getChatId()).setTime("10");
-                MESSAGE_MENU.returnMenu(message, "Обраний час: " + preferences.get(message.getChatId()).getTime());
+                MESSAGE_MENU.returnMenu(message, "РћР±СЂР°РЅРёР№ С‡Р°СЃ: " + preferences.get(message.getChatId()).getTime());
                 break;
             case "11":
                 MESSAGE_MENU.startSchedule(message.getChatId(),
                         messageAlert(message.getChatId()), getAnswer(message.getChatId()), 11, sender);
                 preferences.get(message.getChatId()).setTime("11");
-                MESSAGE_MENU.returnMenu(message, "Обраний час: " + preferences.get(message.getChatId()).getTime());
+                MESSAGE_MENU.returnMenu(message, "РћР±СЂР°РЅРёР№ С‡Р°СЃ: " + preferences.get(message.getChatId()).getTime());
                 break;
             case "12":
                 MESSAGE_MENU.startSchedule(message.getChatId(),
                         messageAlert(message.getChatId()), getAnswer(message.getChatId()), 12, sender);
                 preferences.get(message.getChatId()).setTime("12");
-                MESSAGE_MENU.returnMenu(message, "Обраний час: " + preferences.get(message.getChatId()).getTime());
+                MESSAGE_MENU.returnMenu(message, "РћР±СЂР°РЅРёР№ С‡Р°СЃ: " + preferences.get(message.getChatId()).getTime());
                 break;
             case "13":
                 MESSAGE_MENU.startSchedule(message.getChatId(),
                         messageAlert(message.getChatId()), getAnswer(message.getChatId()), 13, sender);
                 preferences.get(message.getChatId()).setTime("13");
-                MESSAGE_MENU.returnMenu(message, "Обраний час: " + preferences.get(message.getChatId()).getTime());
+                MESSAGE_MENU.returnMenu(message, "РћР±СЂР°РЅРёР№ С‡Р°СЃ: " + preferences.get(message.getChatId()).getTime());
                 break;
             case "14":
                 MESSAGE_MENU.startSchedule(message.getChatId(),
                         messageAlert(message.getChatId()), getAnswer(message.getChatId()), 14, sender);
                 preferences.get(message.getChatId()).setTime("14");
-                MESSAGE_MENU.returnMenu(message, "Обраний час: " + preferences.get(message.getChatId()).getTime());
+                MESSAGE_MENU.returnMenu(message, "РћР±СЂР°РЅРёР№ С‡Р°СЃ: " + preferences.get(message.getChatId()).getTime());
                 break;
             case "15":
                 MESSAGE_MENU.startSchedule(message.getChatId(),
                         messageAlert(message.getChatId()), getAnswer(message.getChatId()), 15, sender);
                 preferences.get(message.getChatId()).setTime("15");
-                MESSAGE_MENU.returnMenu(message, "Обраний час: " + preferences.get(message.getChatId()).getTime());
+                MESSAGE_MENU.returnMenu(message, "РћР±СЂР°РЅРёР№ С‡Р°СЃ: " + preferences.get(message.getChatId()).getTime());
                 break;
             case "16":
                 MESSAGE_MENU.startSchedule(message.getChatId(),
                         messageAlert(message.getChatId()), getAnswer(message.getChatId()), 16, sender);
                 preferences.get(message.getChatId()).setTime("16");
-                MESSAGE_MENU.returnMenu(message, "Обраний час: " + preferences.get(message.getChatId()).getTime());
+                MESSAGE_MENU.returnMenu(message, "РћР±СЂР°РЅРёР№ С‡Р°СЃ: " + preferences.get(message.getChatId()).getTime());
                 break;
             case "17":
                 MESSAGE_MENU.startSchedule(message.getChatId(),
                         messageAlert(message.getChatId()), getAnswer(message.getChatId()), 17, sender);
                 preferences.get(message.getChatId()).setTime("17");
-                MESSAGE_MENU.returnMenu(message, "Обраний час: " + preferences.get(message.getChatId()).getTime());
+                MESSAGE_MENU.returnMenu(message, "РћР±СЂР°РЅРёР№ С‡Р°СЃ: " + preferences.get(message.getChatId()).getTime());
                 break;
             case "18":
                 MESSAGE_MENU.startSchedule(message.getChatId(),
                         messageAlert(message.getChatId()), getAnswer(message.getChatId()), 18, sender);
                 preferences.get(message.getChatId()).setTime("18");
-                MESSAGE_MENU.returnMenu(message, "Обраний час: " + preferences.get(message.getChatId()).getTime());
+                MESSAGE_MENU.returnMenu(message, "РћР±СЂР°РЅРёР№ С‡Р°СЃ: " + preferences.get(message.getChatId()).getTime());
                 break;
-            case "Вимкнути оповіщення":
+            case "Р’РёРјРєРЅСѓС‚Рё РѕРїРѕРІС–С‰РµРЅРЅСЏ":
                 schedules.get(message.getChatId()).stop();
-                preferences.get(message.getChatId()).setTime("вимкнено");
-                MESSAGE_MENU.returnMenu(message, "Оповіщення вимкнені");
+                preferences.get(message.getChatId()).setTime("РІРёРјРєРЅРµРЅРѕ");
+                MESSAGE_MENU.returnMenu(message, "РћРїРѕРІС–С‰РµРЅРЅСЏ РІРёРјРєРЅРµРЅС–");
                 break;
             case "/get":
                 MESSAGE_MENU.getInfo(message, getAnswer(message.getChatId()));

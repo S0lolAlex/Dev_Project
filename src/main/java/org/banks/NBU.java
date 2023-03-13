@@ -30,7 +30,7 @@ public class NBU {
         return
                cc +
                 " rate=" + rate +
-                ", exchangedate=" + docDate +
+                ", exchange date=" + docDate +
                 '}';
     }
 }

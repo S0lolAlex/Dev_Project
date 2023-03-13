@@ -11,8 +11,8 @@ public class MessageUtil implements BotCommands {
     @Getter
     private static NotificationScheduler shedule = null;
     public void setTime(SendMessage message, String time){
-        message.setText("Оберіть час оповіщення. \n " +
-                "Поточний час оповіщень :" + time);
+        message.setText("РћР±РµСЂС–С‚СЊ С‡Р°СЃ РѕРїРѕРІС–С‰РµРЅРЅСЏ. \n " +
+                "РџРѕС‚РѕС‡РЅРёР№ С‡Р°СЃ РѕРїРѕРІС–С‰РµРЅСЊ :" + time);
         message.setReplyMarkup(Buttons.initTimeKeyboard());
     }
 
@@ -22,7 +22,7 @@ public class MessageUtil implements BotCommands {
     }
 
     public void startBot(SendMessage message) {
-        message.setText("Ласкаво просимо. Цей бот допоможе відслідковувати актуальні курси валют");
+        message.setText("Р›Р°СЃРєР°РІРѕ РїСЂРѕСЃРёРјРѕ. Р¦РµР№ Р±РѕС‚ РґРѕРїРѕРјРѕР¶Рµ РІС–РґСЃР»С–РґРєРѕРІСѓРІР°С‚Рё Р°РєС‚СѓР°Р»СЊРЅС– РєСѓСЂСЃРё РІР°Р»СЋС‚");
         message.setReplyMarkup(Buttons.startMarkup());
     }
 
@@ -36,22 +36,22 @@ public class MessageUtil implements BotCommands {
     }
 
     public void setSettings(SendMessage message) {
-        message.setText("Налаштування");
+        message.setText("РќР°Р»Р°С€С‚СѓРІР°РЅРЅСЏ");
         message.setReplyMarkup(Buttons.settingMarkup());
     }
 
     public void chooseBank(SendMessage message) {
-        message.setText("Оберіть банк");
+        message.setText("РћР±РµСЂС–С‚СЊ Р±Р°РЅРє");
         message.setReplyMarkup(Buttons.banks());
     }
 
     public void countFloatPoint(SendMessage message) {
-        message.setText("Оберіть кількість знаків після коми");
+        message.setText("РћР±РµСЂС–С‚СЊ РєС–Р»СЊРєС–СЃС‚СЊ Р·РЅР°РєС–РІ РїС–СЃР»СЏ РєРѕРјРё");
         message.setReplyMarkup(Buttons.setFloatPoint());
     }
 
     public void chooseCurrency(SendMessage message) {
-        message.setText("Оберіть валюту");
+        message.setText("РћР±РµСЂС–С‚СЊ РІР°Р»СЋС‚Сѓ");
         message.setReplyMarkup(Buttons.chooseCurrency());
     }
 @NonNull
