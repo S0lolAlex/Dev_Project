@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BotAnswer {
-       @Getter
+    @Getter
     private static Map<String, NotificationScheduler> schedules = new HashMap<>();
     private static Map<String, UserPreferences> preferences = new HashMap<>();
 
@@ -31,13 +31,13 @@ public class BotAnswer {
                 MessageUtil.setSettings(message);
                 break;
             case "/Banks":
-                MessageUtil.chooseBank(message,preferences.get(message.getChatId()));
+                MessageUtil.chooseBank(message, preferences.get(message.getChatId()));
                 break;
             case "/Count":
-                MessageUtil.countFloatPoint(message,preferences.get(message.getChatId()));
+                MessageUtil.countFloatPoint(message, preferences.get(message.getChatId()));
                 break;
             case "/Currency":
-                MessageUtil.chooseCurrency(message,preferences.get(message.getChatId()));
+                MessageUtil.chooseCurrency(message, preferences.get(message.getChatId()));
                 break;
             case "/time":
                 MessageUtil.setTime(message, preferences.get(message.getChatId()).getTime());
@@ -93,64 +93,16 @@ public class BotAnswer {
                 }
                 break;
             case "9":
-                MessageUtil.startSchedule(message.getChatId(),
-                        messageAlert(message.getChatId()), getAnswer(message.getChatId()), 9, sender);
-                preferences.get(message.getChatId()).setTime("9");
-                MessageUtil.returnMenu(message, "Обраний час: " + preferences.get(message.getChatId()).getTime());
-                break;
             case "10":
-                MessageUtil.startSchedule(message.getChatId(),
-                        messageAlert(message.getChatId()), getAnswer(message.getChatId()), 10, sender);
-                preferences.get(message.getChatId()).setTime("10");
-                MessageUtil.returnMenu(message, "Обраний час: " + preferences.get(message.getChatId()).getTime());
-                break;
             case "11":
-                MessageUtil.startSchedule(message.getChatId(),
-                        messageAlert(message.getChatId()), getAnswer(message.getChatId()), 11, sender);
-                preferences.get(message.getChatId()).setTime("11");
-                MessageUtil.returnMenu(message, "Обраний час: " + preferences.get(message.getChatId()).getTime());
-                break;
             case "12":
-                MessageUtil.startSchedule(message.getChatId(),
-                        messageAlert(message.getChatId()), getAnswer(message.getChatId()), 12, sender);
-                preferences.get(message.getChatId()).setTime("12");
-                MessageUtil.returnMenu(message, "Обраний час: " + preferences.get(message.getChatId()).getTime());
-                break;
             case "13":
-                MessageUtil.startSchedule(message.getChatId(),
-                        messageAlert(message.getChatId()), getAnswer(message.getChatId()), 13, sender);
-                preferences.get(message.getChatId()).setTime("13");
-                MessageUtil.returnMenu(message, "Обраний час: " + preferences.get(message.getChatId()).getTime());
-                break;
             case "14":
-                MessageUtil.startSchedule(message.getChatId(),
-                        messageAlert(message.getChatId()), getAnswer(message.getChatId()), 14, sender);
-                preferences.get(message.getChatId()).setTime("14");
-                MessageUtil.returnMenu(message, "Обраний час: " + preferences.get(message.getChatId()).getTime());
-                break;
             case "15":
-                MessageUtil.startSchedule(message.getChatId(),
-                        messageAlert(message.getChatId()), getAnswer(message.getChatId()), 15, sender);
-                preferences.get(message.getChatId()).setTime("15");
-                MessageUtil.returnMenu(message, "Обраний час: " + preferences.get(message.getChatId()).getTime());
-                break;
             case "16":
-                MessageUtil.startSchedule(message.getChatId(),
-                        messageAlert(message.getChatId()), getAnswer(message.getChatId()), 16, sender);
-                preferences.get(message.getChatId()).setTime("16");
-                MessageUtil.returnMenu(message, "Обраний час: " + preferences.get(message.getChatId()).getTime());
-                break;
             case "17":
-                MessageUtil.startSchedule(message.getChatId(),
-                        messageAlert(message.getChatId()), getAnswer(message.getChatId()), 17, sender);
-                preferences.get(message.getChatId()).setTime("17");
-                MessageUtil.returnMenu(message, "Обраний час: " + preferences.get(message.getChatId()).getTime());
-                break;
             case "18":
-                MessageUtil.startSchedule(message.getChatId(),
-                        messageAlert(message.getChatId()), getAnswer(message.getChatId()), 18, sender);
-                preferences.get(message.getChatId()).setTime("18");
-                MessageUtil.returnMenu(message, "Обраний час: " + preferences.get(message.getChatId()).getTime());
+                scheduleNotification(message, sender, receivedMessage);
                 break;
             case "Вимкнути оповіщення":
                 schedules.get(message.getChatId()).stop();
@@ -164,6 +116,14 @@ public class BotAnswer {
                 break;
         }
     }
+
+    private void scheduleNotification(SendMessage message, MessageSender sender, String hour) {
+        MessageUtil.startSchedule(message.getChatId(),
+                messageAlert(message.getChatId()), getAnswer(message.getChatId()), Integer.parseInt(hour), sender);
+        preferences.get(message.getChatId()).setTime(hour);
+        MessageUtil.returnMenu(message, "Обраний час: " + preferences.get(message.getChatId()).getTime());
+    }
+
     //return current currency by current user properties
     private String getAnswer(String chatId) {
         String answer;
@@ -176,6 +136,7 @@ public class BotAnswer {
         }
         return answer;
     }
+
     //create message to alert
     private SendMessage messageAlert(String chatId) {
         SendMessage message = new SendMessage();
