@@ -1,29 +1,31 @@
 package org.buttons;
 
+import Utils.UserPreferences;
+import org.banks.Monobank;
+import org.banks.NBU;
+import org.banks.Privat;
+import org.glassfish.grizzly.nio.AbstractNIOAsyncQueueReader;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Buttons {
+    private static final String EMOJI = "✅";
+    private static final DecimalFormat POINT_2 = new DecimalFormat("#0.00");
+    private static final DecimalFormat POINT_3 = new DecimalFormat("#0.000");
+    private static final DecimalFormat POINT_4 = new DecimalFormat("#0.0000");
     private static final InlineKeyboardButton SETTINGS_BUTTON = new InlineKeyboardButton("Налаштування");
     private static final InlineKeyboardButton GET_INFO_BUTTON = new InlineKeyboardButton("Отримату інфо");
     private static final InlineKeyboardButton COUNT_BUTTON = new InlineKeyboardButton("Кількість знаків після коми");
     private static final InlineKeyboardButton BANKS_BUTTON = new InlineKeyboardButton("Банк");
     private static final InlineKeyboardButton CURRENCY_BUTTON = new InlineKeyboardButton("Валюти");
     private static final InlineKeyboardButton TIME_BUTTON = new InlineKeyboardButton("Час оповіщення");
-    private static final InlineKeyboardButton BUTTON_2 = new InlineKeyboardButton("2 знаки");
-    private static final InlineKeyboardButton BUTTON_3 = new InlineKeyboardButton("3 знаки");
-    private static final InlineKeyboardButton BUTTON_4 = new InlineKeyboardButton("4 знаки");
-    private static final InlineKeyboardButton PRIVATE_BUTTON = new InlineKeyboardButton("ПриватБанк");
-    private static final InlineKeyboardButton MONO_BUTTON = new InlineKeyboardButton("МоноБанк");
-    private static final InlineKeyboardButton NBU_BUTTON = new InlineKeyboardButton("НБУ");
-    private static final InlineKeyboardButton EUR_BUTTON = new InlineKeyboardButton("EUR");
-    private static final InlineKeyboardButton USD_BUTTON = new InlineKeyboardButton("USD");
     private static final InlineKeyboardButton CURRENCY_CHOOSE_BUTTON = new InlineKeyboardButton("Підтвердити");
 
     //Init the callBack to Buttons
@@ -34,14 +36,6 @@ public class Buttons {
         BANKS_BUTTON.setCallbackData("/Banks");
         CURRENCY_BUTTON.setCallbackData("/Currency");
         TIME_BUTTON.setCallbackData("/time");
-        BUTTON_2.setCallbackData("/2");
-        BUTTON_3.setCallbackData("/3");
-        BUTTON_4.setCallbackData("/4");
-        PRIVATE_BUTTON.setCallbackData("/Private");
-        MONO_BUTTON.setCallbackData("/Mono");
-        NBU_BUTTON.setCallbackData("/NBU");
-        EUR_BUTTON.setCallbackData("/EUR");
-        USD_BUTTON.setCallbackData("/USD");
         CURRENCY_CHOOSE_BUTTON.setCallbackData("/Chosen");
     }
 
@@ -70,7 +64,13 @@ public class Buttons {
         return markupInline;
     }
     //keyboard of settings of count numbers after point
-    public static InlineKeyboardMarkup setFloatPoint() {
+    public static InlineKeyboardMarkup setFloatPoint(UserPreferences user) {
+        InlineKeyboardButton BUTTON_2 = new InlineKeyboardButton((user.getDf().equals(POINT_2)? EMOJI:"") + "2 знаки");
+        InlineKeyboardButton BUTTON_3 = new InlineKeyboardButton((user.getDf().equals(POINT_3)? EMOJI:"") + "3 знаки");
+        InlineKeyboardButton BUTTON_4 = new InlineKeyboardButton((user.getDf().equals(POINT_4)? EMOJI:"") + "4 знаки");
+        BUTTON_2.setCallbackData("/2");
+        BUTTON_3.setCallbackData("/3");
+        BUTTON_4.setCallbackData("/4");
         List<InlineKeyboardButton> two = List.of(BUTTON_2);
         List<InlineKeyboardButton> three = List.of(BUTTON_3);
         List<InlineKeyboardButton> four = List.of(BUTTON_4);
@@ -82,7 +82,13 @@ public class Buttons {
         return markupInline;
     }
     // keyboard of banks list
-    public static InlineKeyboardMarkup banks() {
+    public static InlineKeyboardMarkup banks(UserPreferences user) {
+        InlineKeyboardButton PRIVATE_BUTTON = new InlineKeyboardButton((user.getBank() instanceof Privat ? EMOJI:"") + "ПриватБанк");
+        InlineKeyboardButton MONO_BUTTON = new InlineKeyboardButton((user.getBank().equals(Monobank.class) ? EMOJI:"") + "МоноБанк");
+        InlineKeyboardButton NBU_BUTTON = new InlineKeyboardButton((user.getBank().equals(NBU.class) ? EMOJI:"") + "НБУ");
+        PRIVATE_BUTTON.setCallbackData("/Private");
+        MONO_BUTTON.setCallbackData("/Mono");
+        NBU_BUTTON.setCallbackData("/NBU");
 
         List<InlineKeyboardButton> privat = List.of(PRIVATE_BUTTON);
         List<InlineKeyboardButton> monobank = List.of(MONO_BUTTON);
@@ -95,7 +101,11 @@ public class Buttons {
         return markupInline;
     }
     // keyboard of currency settings
-    public static InlineKeyboardMarkup chooseCurrency() {
+    public static InlineKeyboardMarkup chooseCurrency(UserPreferences user) {
+        InlineKeyboardButton EUR_BUTTON = new InlineKeyboardButton((user.isEur() ? EMOJI:"") + "EUR");
+        InlineKeyboardButton USD_BUTTON = new InlineKeyboardButton((user.isUsd() ? EMOJI:"") + "USD");
+        EUR_BUTTON.setCallbackData("/EUR");
+        USD_BUTTON.setCallbackData("/USD");
 
         List<InlineKeyboardButton> eur = List.of(EUR_BUTTON);
         List<InlineKeyboardButton> usd = List.of(USD_BUTTON);

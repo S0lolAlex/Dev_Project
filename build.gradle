@@ -19,3 +19,8 @@ dependencies {
     // https://mvnrepository.com/artifact/org.telegram/telegrambots
     implementation 'org.telegram:telegrambots:6.5.0'
 }
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}

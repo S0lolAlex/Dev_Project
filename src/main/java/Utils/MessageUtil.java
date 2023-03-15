@@ -41,19 +41,19 @@ public class MessageUtil implements BotCommands {
         message.setReplyMarkup(Buttons.settingMarkup());
     }
 
-    public void chooseBank(SendMessage message) {
+    public void chooseBank(SendMessage message,UserPreferences user) {
         message.setText("Оберіть банк");
-        message.setReplyMarkup(Buttons.banks());
+        message.setReplyMarkup(Buttons.banks(user));
     }
 
-    public void countFloatPoint(SendMessage message) {
+    public void countFloatPoint(SendMessage message,UserPreferences user) {
         message.setText("Оберіть кількість знаків після коми");
-        message.setReplyMarkup(Buttons.setFloatPoint());
+        message.setReplyMarkup(Buttons.setFloatPoint(user));
     }
 
-    public void chooseCurrency(SendMessage message) {
+    public void chooseCurrency(SendMessage message,UserPreferences user) {
         message.setText("Оберіть валюту");
-        message.setReplyMarkup(Buttons.chooseCurrency());
+        message.setReplyMarkup(Buttons.chooseCurrency(user));
     }
 
     @NonNull

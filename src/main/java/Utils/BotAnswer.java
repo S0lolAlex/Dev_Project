@@ -33,13 +33,13 @@ public class BotAnswer {
                 MESSAGE_MENU.setSettings(message);
                 break;
             case "/Banks":
-                MESSAGE_MENU.chooseBank(message);
+                MESSAGE_MENU.chooseBank(message,preferences.get(message.getChatId()));
                 break;
             case "/Count":
-                MESSAGE_MENU.countFloatPoint(message);
+                MESSAGE_MENU.countFloatPoint(message,preferences.get(message.getChatId()));
                 break;
             case "/Currency":
-                MESSAGE_MENU.chooseCurrency(message);
+                MESSAGE_MENU.chooseCurrency(message,preferences.get(message.getChatId()));
                 break;
             case "/time":
                 MESSAGE_MENU.setTime(message, preferences.get(message.getChatId()).getTime());
