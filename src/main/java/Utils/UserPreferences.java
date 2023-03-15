@@ -18,7 +18,7 @@ public class UserPreferences {
 
     public UserPreferences() {
         bank = new PrivatService();
-        df = new DecimalFormat();
+        df = new DecimalFormat("#0.00");
         isUsd = false;
         isEur = false;
         isOne = true;
