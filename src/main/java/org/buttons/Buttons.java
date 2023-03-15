@@ -4,6 +4,9 @@ import Utils.UserPreferences;
 import org.banks.Monobank;
 import org.banks.NBU;
 import org.banks.Privat;
+import org.dto.MonobankService;
+import org.dto.NBUService;
+import org.dto.PrivatService;
 import org.glassfish.grizzly.nio.AbstractNIOAsyncQueueReader;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
@@ -83,9 +86,9 @@ public class Buttons {
     }
     // keyboard of banks list
     public static InlineKeyboardMarkup banks(UserPreferences user) {
-        InlineKeyboardButton PRIVATE_BUTTON = new InlineKeyboardButton((user.getBank() instanceof Privat ? EMOJI:"") + "ПриватБанк");
-        InlineKeyboardButton MONO_BUTTON = new InlineKeyboardButton((user.getBank().equals(Monobank.class) ? EMOJI:"") + "МоноБанк");
-        InlineKeyboardButton NBU_BUTTON = new InlineKeyboardButton((user.getBank().equals(NBU.class) ? EMOJI:"") + "НБУ");
+        InlineKeyboardButton PRIVATE_BUTTON = new InlineKeyboardButton((user.getBank() instanceof PrivatService ? EMOJI:"") + "ПриватБанк");
+        InlineKeyboardButton MONO_BUTTON = new InlineKeyboardButton((user.getBank() instanceof MonobankService ? EMOJI:"") + "МоноБанк");
+        InlineKeyboardButton NBU_BUTTON = new InlineKeyboardButton((user.getBank() instanceof NBUService ? EMOJI:"") + "НБУ");
         PRIVATE_BUTTON.setCallbackData("/Private");
         MONO_BUTTON.setCallbackData("/Mono");
         NBU_BUTTON.setCallbackData("/NBU");
