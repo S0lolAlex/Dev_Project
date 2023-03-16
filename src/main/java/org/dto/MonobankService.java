@@ -28,9 +28,9 @@ public class MonobankService extends BankService implements BanksUtil {
                     .stream()
                     .filter(dto -> dto.getCurrencyCodeA() == Currency.getInstance(command)
                             .getNumericCode() && dto.getCurrencyCodeB() == ISO_CODE_UAH)
-                    .map(dto -> "Monobank: " + Currency.getInstance(command) +
-                            " buy = " + df.format(dto.getRateBuy())
-                            + " sell = " + df.format(dto.getRateSell()))
+                    .map(dto -> "МОНОБАНК курси обміну для " + Currency.getInstance(command) + "\n"
+                            + "Купівля = " + df.format(dto.getRateBuy()) + " UAH, "
+                            + "Продаж = " + df.format(dto.getRateSell()) + " UAH")
                     .collect(Collectors.joining());
         } catch (IllegalArgumentException e) {
             return "такої валюти немає";
