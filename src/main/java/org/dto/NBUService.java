@@ -21,8 +21,8 @@ public class NBUService extends BankService implements BanksUtil {
             return responseDtos
                     .stream()
                     .filter(dto -> dto.getCc().equals(Currency.getInstance(command)))
-                    .map(dto -> "NBU: " + Currency.getInstance(command) + " course = "
-                            + df.format(dto.getRate()))
+                    .map(dto -> "НБУ курс обміну для " + Currency.getInstance(command) + "\n"
+                            + "Офіційний курс = " + df.format(dto.getRate()) + " UAH")
                     .collect(Collectors.joining());
         } catch (IOException e) {
             return "Проблеми на сервері";
