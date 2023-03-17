@@ -6,6 +6,7 @@ import org.dto.MonobankService;
 import org.dto.NBUService;
 import org.dto.PrivatService;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageReplyMarkup;
 
 import java.text.DecimalFormat;
 import java.util.HashMap;
@@ -14,7 +15,7 @@ import java.util.Map;
 public class BotAnswer {
     @Getter
     private static Map<String, NotificationScheduler> schedules = new HashMap<>();
-    private static Map<String, UserPreferences> preferences = new HashMap<>();
+    public static Map<String, UserPreferences> preferences = new HashMap<>();
 
     public void botAnswerUtils(String receivedMessage, SendMessage message, MessageSender sender) {
         switch (receivedMessage) {
@@ -66,12 +67,12 @@ public class BotAnswer {
                 MessageUtil.returnMenu(message, "Банк НБУ");
                 preferences.get(message.getChatId()).setBank(new NBUService());
                 break;
-            case "/USD":
-                preferences.get(message.getChatId()).setUsd(!preferences.get(message.getChatId()).isUsd());
-                break;
-            case "/EUR":
-                preferences.get(message.getChatId()).setEur(!preferences.get(message.getChatId()).isEur());
-                break;
+//            case "/USD":
+//                preferences.get(message.getChatId()).setUsd(!preferences.get(message.getChatId()).isUsd());
+//                break;
+//            case "/EUR":
+//                preferences.get(message.getChatId()).setEur(!preferences.get(message.getChatId()).isEur());
+//                break;
             case "/Chosen":
                 if (!preferences.get(message.getChatId()).isUsd() && !preferences.get(message.getChatId()).isEur()) {
                     preferences.get(message.getChatId()).setOne(true);
@@ -111,6 +112,23 @@ public class BotAnswer {
                 break;
             case "/get":
                 MessageUtil.getInfo(message, getAnswer(message.getChatId()));
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void botChangingAnswerUtils(String receivedMessage, EditMessageReplyMarkup message, MessageSender sender) {
+        switch (receivedMessage) {
+            case "/USD_CHANGING":
+            case "/USD_CHECKED":
+                preferences.get(message.getChatId()).setUsd(!preferences.get(message.getChatId()).isUsd());
+                MessageUtil.chooseCurrencyChanging(message, preferences.get(message.getChatId()));
+                break;
+            case "/EUR_CHANGING":
+            case "/EUR_CHECKED":
+                preferences.get(message.getChatId()).setEur(!preferences.get(message.getChatId()).isEur());
+                MessageUtil.chooseCurrencyChanging(message, preferences.get(message.getChatId()));
                 break;
             default:
                 break;

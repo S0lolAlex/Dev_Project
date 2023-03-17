@@ -1,13 +1,9 @@
 package org.buttons;
 
 import Utils.UserPreferences;
-import org.banks.Monobank;
-import org.banks.NBU;
-import org.banks.Privat;
 import org.dto.MonobankService;
 import org.dto.NBUService;
 import org.dto.PrivatService;
-import org.glassfish.grizzly.nio.AbstractNIOAsyncQueueReader;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
@@ -105,10 +101,50 @@ public class Buttons {
     }
     // keyboard of currency settings
     public static InlineKeyboardMarkup chooseCurrency(UserPreferences user) {
-        InlineKeyboardButton EUR_BUTTON = new InlineKeyboardButton((user.isEur() ? EMOJI:"") + "EUR");
-        InlineKeyboardButton USD_BUTTON = new InlineKeyboardButton((user.isUsd() ? EMOJI:"") + "USD");
-        EUR_BUTTON.setCallbackData("/EUR");
-        USD_BUTTON.setCallbackData("/USD");
+        InlineKeyboardButton EUR_BUTTON = new InlineKeyboardButton("EUR");
+        InlineKeyboardButton USD_BUTTON = new InlineKeyboardButton("USD");
+        EUR_BUTTON.setCallbackData("/EUR_CHANGING");
+        USD_BUTTON.setCallbackData("/USD_CHANGING");
+
+        List<InlineKeyboardButton> eur = List.of(EUR_BUTTON);
+        List<InlineKeyboardButton> usd = List.of(USD_BUTTON);
+        List<InlineKeyboardButton> chosen = List.of(CURRENCY_CHOOSE_BUTTON);
+        List<List<InlineKeyboardButton>> rowsInLine = List.of(usd, eur, chosen);
+
+        InlineKeyboardMarkup markupInline = new InlineKeyboardMarkup();
+        markupInline.setKeyboard(rowsInLine);
+
+        return markupInline;
+    }
+
+    public static InlineKeyboardMarkup chooseCurrencyChanging(UserPreferences user) {
+        InlineKeyboardButton EUR_BUTTON = new InlineKeyboardButton();
+        InlineKeyboardButton USD_BUTTON = new InlineKeyboardButton();
+        if (!user.isUsd() && !user.isEur()){
+            EUR_BUTTON.setText("EUR");
+            USD_BUTTON.setText("USD");
+            EUR_BUTTON.setCallbackData("/EUR_CHANGING");
+            USD_BUTTON.setCallbackData("/USD_CHANGING");
+        } else if (user.isUsd() && user.isEur()) {
+            EUR_BUTTON.setText(EMOJI + "EUR");
+            USD_BUTTON.setText(EMOJI + "USD");
+            EUR_BUTTON.setCallbackData("/EUR_CHECKED");
+            USD_BUTTON.setCallbackData("/USD_CHECKED");
+        } else if (user.isUsd()) {
+            EUR_BUTTON.setText("EUR");
+            USD_BUTTON.setText(EMOJI + "USD");
+            EUR_BUTTON.setCallbackData("/EUR_CHANGING");
+            USD_BUTTON.setCallbackData("/USD_CHECKED");
+        } else {
+            EUR_BUTTON.setText(EMOJI + "EUR");
+            USD_BUTTON.setText("USD");
+            EUR_BUTTON.setCallbackData("/EUR_CHECKED");
+            USD_BUTTON.setCallbackData("/USD_CHANGING");
+        }
+//        InlineKeyboardButton EUR_BUTTON_CHECKED = new InlineKeyboardButton(EMOJI + "EUR");
+//        InlineKeyboardButton USD_BUTTON = new InlineKeyboardButton((user.isUsd() ? EMOJI:"") + "USD");
+//        EUR_BUTTON_CHECKED.setCallbackData("/EUR_CHECKED");
+//        USD_BUTTON.setCallbackData("/USD");
 
         List<InlineKeyboardButton> eur = List.of(EUR_BUTTON);
         List<InlineKeyboardButton> usd = List.of(USD_BUTTON);

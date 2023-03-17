@@ -6,6 +6,7 @@ import lombok.NonNull;
 import org.buttons.BotCommands;
 import org.buttons.Buttons;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageReplyMarkup;
 
 public class MessageUtil implements BotCommands {
     @Getter
@@ -54,6 +55,11 @@ public class MessageUtil implements BotCommands {
     public static  void chooseCurrency(SendMessage message,UserPreferences user) {
         message.setText("Оберіть валюту");
         message.setReplyMarkup(Buttons.chooseCurrency(user));
+    }
+
+    public static  void chooseCurrencyChanging(EditMessageReplyMarkup message, UserPreferences user) {
+        //message.setText("Оберіть валюту");
+        message.setReplyMarkup(Buttons.chooseCurrencyChanging(user));
     }
 
     @NonNull
