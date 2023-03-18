@@ -19,7 +19,7 @@ public class UserPreferences {
     public UserPreferences() {
         bank = new PrivatService();
         df = new DecimalFormat("#0.00");
-        isUsd = false;
+        isUsd = true;
         isEur = false;
         isOne = true;
         currency = "USD";

@@ -101,10 +101,10 @@ public class Buttons {
     }
     // keyboard of currency settings
     public static InlineKeyboardMarkup chooseCurrency(UserPreferences user) {
-        InlineKeyboardButton EUR_BUTTON = new InlineKeyboardButton("EUR");
-        InlineKeyboardButton USD_BUTTON = new InlineKeyboardButton("USD");
-        EUR_BUTTON.setCallbackData("/EUR_CHANGING");
-        USD_BUTTON.setCallbackData("/USD_CHANGING");
+        InlineKeyboardButton EUR_BUTTON = new InlineKeyboardButton((user.isEur() ? EMOJI:"") + "EUR");
+        InlineKeyboardButton USD_BUTTON = new InlineKeyboardButton((user.isUsd() ? EMOJI:"") + "USD");
+        EUR_BUTTON.setCallbackData(user.isEur() ? "/EUR_CHECKED" : "/EUR_CHANGING");
+        USD_BUTTON.setCallbackData(user.isUsd() ? "/USD_CHECKED" : "/USD_CHANGING");
 
         List<InlineKeyboardButton> eur = List.of(EUR_BUTTON);
         List<InlineKeyboardButton> usd = List.of(USD_BUTTON);
@@ -159,7 +159,6 @@ public class Buttons {
     // settings of alert time keyboard
     public static ReplyKeyboardMarkup initTimeKeyboard() {
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
-        ;
 
         replyKeyboardMarkup.setResizeKeyboard(true);
         replyKeyboardMarkup.setOneTimeKeyboard(true);
