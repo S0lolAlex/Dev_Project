@@ -43,29 +43,36 @@ public class BotAnswer {
             case "/time":
                 MessageUtil.setTime(message, preferences.get(message.getChatId()).getTime());
                 break;
-            case "/2":
-                MessageUtil.returnMenu(message, "2 знаки");
+            case "/2_CHANGING":
+                preferences.get(message.getChatId()).isTwo();
                 preferences.get(message.getChatId()).setDf(new DecimalFormat("#0.00"));
+                MessageUtil.returnMenu(message, "2 знаки");
                 break;
-            case "/3":
-                MessageUtil.returnMenu(message, "3 знаки");
+            case "/3_CHANGING":
+                preferences.get(message.getChatId()).isThree();
                 preferences.get(message.getChatId()).setDf(new DecimalFormat("#0.000"));
+                MessageUtil.returnMenu(message, "3 знаки");
                 break;
-            case "/4":
-                MessageUtil.returnMenu(message, "4 знаки");
+            case "/4_CHANGING":
+                preferences.get(message.getChatId()).isFour();
                 preferences.get(message.getChatId()).setDf(new DecimalFormat("#0.0000"));
+                MessageUtil.returnMenu(message, "4 знаки");
                 break;
-            case "/Private":
-                MessageUtil.returnMenu(message, "ПриватБанк");
+            case "/Private_CHANGING":
+                preferences.get(message.getChatId()).isPrivate();
                 preferences.get(message.getChatId()).setBank(new PrivatService());
+                MessageUtil.returnMenu(message, "ПриватБанк");
                 break;
-            case "/Mono":
-                MessageUtil.returnMenu(message, "Монобанк");
+            case "/Mono_CHANGING":
+                preferences.get(message.getChatId()).isMono();
                 preferences.get(message.getChatId()).setBank(new MonobankService());
+                MessageUtil.returnMenu(message, "Монобанк");
                 break;
-            case "/NBU":
-                MessageUtil.returnMenu(message, "Банк НБУ");
+            case "/NBU_CHANGING":
+                preferences.get(message.getChatId()).isNBU();
                 preferences.get(message.getChatId()).setBank(new NBUService());
+                MessageUtil.returnMenu(message, "Банк НБУ");
+
                 break;
 //            case "/USD":
 //                preferences.get(message.getChatId()).setUsd(!preferences.get(message.getChatId()).isUsd());
@@ -130,7 +137,37 @@ public class BotAnswer {
                 preferences.get(message.getChatId()).setEur(!preferences.get(message.getChatId()).isEur());
                 MessageUtil.chooseCurrencyChanging(message, preferences.get(message.getChatId()));
                 break;
-            default:
+            case "/Private_CHANGING":
+            case "/Private_CHECKED":
+                preferences.get(message.getChatId()).setPrivate(!preferences.get(message.getChatId()).isPrivate());
+                MessageUtil.chooseBankChanging(message, preferences.get(message.getChatId()));
+                break;
+            case "/Mono_CHANGING":
+                case "/Mono_CHECKED":
+                    preferences.get(message.getChatId()).setMono(!preferences.get(message.getChatId()).isMono());
+                MessageUtil.chooseBankChanging(message, preferences.get(message.getChatId()));
+                break;
+            case "/NBU_CHANGING":
+            case "/NBU_CHECKED":
+                preferences.get(message.getChatId()).setNBU(!preferences.get(message.getChatId()).isNBU());
+                MessageUtil.chooseBankChanging(message, preferences.get(message.getChatId()));
+                break;
+            case "/2_CHANGING":
+            case "/2_CHECKED":
+                preferences.get(message.getChatId()).setTwo(!preferences.get(message.getChatId()).isTwo());
+                MessageUtil.countFloatPointChanging(message, preferences.get(message.getChatId()));
+                break;
+            case "/3_CHANGING":
+            case "/3_CHECKED":
+                preferences.get(message.getChatId()).setThree(!preferences.get(message.getChatId()).isThree());
+                MessageUtil.countFloatPointChanging(message, preferences.get(message.getChatId()));
+                break;
+            case "/4_CHANGING":
+            case "/4_CHECKED":
+                preferences.get(message.getChatId()).setFour(!preferences.get(message.getChatId()).isFour());
+                MessageUtil.countFloatPointChanging(message, preferences.get(message.getChatId()));
+                break;
+                default:
                 break;
         }
     }

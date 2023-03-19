@@ -47,9 +47,16 @@ public class MessageUtil implements BotCommands {
         message.setReplyMarkup(Buttons.banks(user));
     }
 
+    public  static void chooseBankChanging(EditMessageReplyMarkup message, UserPreferences user) {
+        message.setReplyMarkup(Buttons.banksChanging(user));
+    }
+
     public  static void countFloatPoint(SendMessage message,UserPreferences user) {
         message.setText("Оберіть кількість знаків після коми");
         message.setReplyMarkup(Buttons.setFloatPoint(user));
+    }
+    public  static void countFloatPointChanging(EditMessageReplyMarkup message, UserPreferences user) {
+        message.setReplyMarkup(Buttons.setFloatPointChanging(user));
     }
 
     public static  void chooseCurrency(SendMessage message,UserPreferences user) {

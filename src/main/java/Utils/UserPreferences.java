@@ -10,6 +10,12 @@ import java.text.DecimalFormat;
 public class UserPreferences {
     private BanksUtil bank;
     private DecimalFormat df;
+    private boolean isTwo;
+    private boolean isThree;
+    private boolean isFour;
+    private boolean isPrivate;
+    private boolean isMono;
+    private boolean isNBU;
     private boolean isUsd;
     private boolean isEur;
     private boolean isOne;

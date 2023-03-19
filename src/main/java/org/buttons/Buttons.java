@@ -64,12 +64,12 @@ public class Buttons {
     }
     //keyboard of settings of count numbers after point
     public static InlineKeyboardMarkup setFloatPoint(UserPreferences user) {
-        InlineKeyboardButton BUTTON_2 = new InlineKeyboardButton((user.getDf().equals(POINT_2)? EMOJI:"") + "2 знаки");
-        InlineKeyboardButton BUTTON_3 = new InlineKeyboardButton((user.getDf().equals(POINT_3)? EMOJI:"") + "3 знаки");
-        InlineKeyboardButton BUTTON_4 = new InlineKeyboardButton((user.getDf().equals(POINT_4)? EMOJI:"") + "4 знаки");
-        BUTTON_2.setCallbackData("/2");
-        BUTTON_3.setCallbackData("/3");
-        BUTTON_4.setCallbackData("/4");
+        InlineKeyboardButton BUTTON_2 = new InlineKeyboardButton( "2 знаки");
+        InlineKeyboardButton BUTTON_3 = new InlineKeyboardButton("3 знаки");
+        InlineKeyboardButton BUTTON_4 = new InlineKeyboardButton( "4 знаки");
+        BUTTON_2.setCallbackData("/2_CHANGING");
+        BUTTON_3.setCallbackData("/3_CHANGING");
+        BUTTON_4.setCallbackData("/4_CHANGING");
         List<InlineKeyboardButton> two = List.of(BUTTON_2);
         List<InlineKeyboardButton> three = List.of(BUTTON_3);
         List<InlineKeyboardButton> four = List.of(BUTTON_4);
@@ -80,14 +80,62 @@ public class Buttons {
 
         return markupInline;
     }
+    public static InlineKeyboardMarkup setFloatPointChanging(UserPreferences user) {
+        InlineKeyboardButton BUTTON_2 = new InlineKeyboardButton();
+        InlineKeyboardButton BUTTON_3 = new InlineKeyboardButton();
+        InlineKeyboardButton BUTTON_4 = new InlineKeyboardButton();
+
+        if(!user.isThree() && !user.isTwo() && !user.isFour()){
+            BUTTON_2.setText("2 знаки");
+            BUTTON_3.setText("3 знаки");
+            BUTTON_4.setText("4 знаки");
+            BUTTON_2.setCallbackData("/2_CHANGING");
+            BUTTON_3.setCallbackData("/3_CHANGING");
+            BUTTON_4.setCallbackData("/4_CHANGING");
+
+        }
+        else if (user.isTwo()) {
+            BUTTON_2.setText(EMOJI + "2 знаки");
+            BUTTON_3.setText("3 знаки");
+            BUTTON_4.setText("4 знаки");
+            BUTTON_2.setCallbackData("/2_CHECKED");
+            BUTTON_3.setCallbackData("/3_CHANGING");
+            BUTTON_4.setCallbackData("/4_CHANGING");
+        } else if (user.isThree()) {
+            BUTTON_2.setText("2 знаки");
+            BUTTON_3.setText(EMOJI + "3 знаки");
+            BUTTON_4.setText("4 знаки");
+            BUTTON_2.setCallbackData("/2_CHANGING");
+            BUTTON_3.setCallbackData("/3_CHECKED");
+            BUTTON_4.setCallbackData("/4_CHANGING");
+        } else if (user.isFour()) {
+            BUTTON_2.setText("2 знаки");
+            BUTTON_3.setText( "3 знаки");
+            BUTTON_4.setText(EMOJI +"4 знаки");
+            BUTTON_2.setCallbackData("/2_CHANGING");
+            BUTTON_3.setCallbackData("/3_CHANGING");
+            BUTTON_4.setCallbackData("/4_CHECKED");
+        }
+
+        List<InlineKeyboardButton> two = List.of(BUTTON_2);
+        List<InlineKeyboardButton> three = List.of(BUTTON_3);
+        List<InlineKeyboardButton> four = List.of(BUTTON_4);
+        List<List<InlineKeyboardButton>> rowsInLine = List.of(two, three, four);
+
+        InlineKeyboardMarkup markupInline = new InlineKeyboardMarkup();
+        markupInline.setKeyboard(rowsInLine);
+
+        return markupInline;
+    }
+
     // keyboard of banks list
     public static InlineKeyboardMarkup banks(UserPreferences user) {
-        InlineKeyboardButton PRIVATE_BUTTON = new InlineKeyboardButton((user.getBank() instanceof PrivatService ? EMOJI:"") + "ПриватБанк");
-        InlineKeyboardButton MONO_BUTTON = new InlineKeyboardButton((user.getBank() instanceof MonobankService ? EMOJI:"") + "МоноБанк");
-        InlineKeyboardButton NBU_BUTTON = new InlineKeyboardButton((user.getBank() instanceof NBUService ? EMOJI:"") + "НБУ");
-        PRIVATE_BUTTON.setCallbackData("/Private");
-        MONO_BUTTON.setCallbackData("/Mono");
-        NBU_BUTTON.setCallbackData("/NBU");
+        InlineKeyboardButton PRIVATE_BUTTON = new InlineKeyboardButton("ПриватБанк");
+        InlineKeyboardButton MONO_BUTTON = new InlineKeyboardButton( "МоноБанк");
+        InlineKeyboardButton NBU_BUTTON = new InlineKeyboardButton( "НБУ");
+        PRIVATE_BUTTON.setCallbackData("/Private_CHANGING");
+        MONO_BUTTON.setCallbackData("/Mono_CHANGING");
+        NBU_BUTTON.setCallbackData("/NBU_CHANGING");
 
         List<InlineKeyboardButton> privat = List.of(PRIVATE_BUTTON);
         List<InlineKeyboardButton> monobank = List.of(MONO_BUTTON);
@@ -99,6 +147,56 @@ public class Buttons {
 
         return markupInline;
     }
+
+
+    public static InlineKeyboardMarkup banksChanging(UserPreferences user) {
+        InlineKeyboardButton PRIVATE_BUTTON = new InlineKeyboardButton();
+        InlineKeyboardButton MONO_BUTTON = new InlineKeyboardButton();
+        InlineKeyboardButton NBU_BUTTON = new InlineKeyboardButton();
+
+        if(!user.isPrivate() && !user.isMono() && !user.isEur()){
+            PRIVATE_BUTTON.setText("ПриватБанк");
+            MONO_BUTTON.setText("МоноБанк");
+            NBU_BUTTON.setText("НБУ");
+            PRIVATE_BUTTON.setCallbackData("/Private_CHANGING");
+            MONO_BUTTON.setCallbackData("/Mono_CHANGING");
+            NBU_BUTTON.setCallbackData("/NBU_CHANGING");
+
+        }
+        else if (user.isPrivate()) {
+            PRIVATE_BUTTON.setText(EMOJI + "ПриватБанк");
+            MONO_BUTTON.setText("МоноБанк");
+            NBU_BUTTON.setText("НБУ");
+            PRIVATE_BUTTON.setCallbackData("/Private_CHECKED");
+            MONO_BUTTON.setCallbackData("/Mono_CHANGING");
+            NBU_BUTTON.setCallbackData("/NBU_CHANGING");
+        } else if (user.isMono()) {
+            PRIVATE_BUTTON.setText("ПриватБанк");
+            MONO_BUTTON.setText(EMOJI + "МоноБанк");
+            NBU_BUTTON.setText("НБУ");
+            PRIVATE_BUTTON.setCallbackData("/Private_CHANGING");
+            MONO_BUTTON.setCallbackData("/Mono_CHECKED");
+            NBU_BUTTON.setCallbackData("/NBU_CHANGING");
+        } else if (user.isNBU()) {
+            PRIVATE_BUTTON.setText("ПриватБанк");
+            MONO_BUTTON.setText("МоноБанк");
+            NBU_BUTTON.setText(EMOJI + "НБУ");
+            PRIVATE_BUTTON.setCallbackData("/Private_CHANGING");
+            MONO_BUTTON.setCallbackData("/Mono_CHANGING");
+            NBU_BUTTON.setCallbackData("/NBU_CHECKED");
+        }
+        List<InlineKeyboardButton> privat = List.of(PRIVATE_BUTTON);
+        List<InlineKeyboardButton> monobank = List.of(MONO_BUTTON);
+        List<InlineKeyboardButton> nbu = List.of(NBU_BUTTON);
+        List<List<InlineKeyboardButton>> rowsInLine = List.of(privat, monobank, nbu);
+
+        InlineKeyboardMarkup markupInline = new InlineKeyboardMarkup();
+        markupInline.setKeyboard(rowsInLine);
+
+        return markupInline;
+    }
+
+
     // keyboard of currency settings
     public static InlineKeyboardMarkup chooseCurrency(UserPreferences user) {
         InlineKeyboardButton EUR_BUTTON = new InlineKeyboardButton("EUR");
@@ -116,7 +214,6 @@ public class Buttons {
 
         return markupInline;
     }
-
     public static InlineKeyboardMarkup chooseCurrencyChanging(UserPreferences user) {
         InlineKeyboardButton EUR_BUTTON = new InlineKeyboardButton();
         InlineKeyboardButton USD_BUTTON = new InlineKeyboardButton();
