@@ -21,9 +21,9 @@ public class PrivatService extends BankService implements BanksUtil {
             return responseDtos
                     .stream()
                     .filter(dto -> dto.getCcy().equals(Currency.getInstance(command)))
-                    .map(dto -> "ПРИВАТБАНК курси обміну для " + Currency.getInstance(command) + "\n"
-                            + "Купівля = " + df.format(dto.getBuy()) + " UAH, "
-                            + "Продаж = " + df.format(dto.getSale()) + " UAH")
+                    .map(dto -> "PrivateBank: " + Currency.getInstance(command)
+                            + " sell = " + df.format(dto.getSale())
+                            + " buy = " + df.format(dto.getBuy()))
                     .collect(Collectors.joining(""));
         } catch (IOException e) {
             return "Проблеми на сервері";
