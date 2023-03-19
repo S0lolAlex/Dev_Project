@@ -64,12 +64,12 @@ public class Buttons {
     }
     //keyboard of settings of count numbers after point
     public static InlineKeyboardMarkup setFloatPoint(UserPreferences user) {
-        InlineKeyboardButton BUTTON_2 = new InlineKeyboardButton( "2 знаки");
-        InlineKeyboardButton BUTTON_3 = new InlineKeyboardButton("3 знаки");
-        InlineKeyboardButton BUTTON_4 = new InlineKeyboardButton( "4 знаки");
-        BUTTON_2.setCallbackData("/2_CHANGING");
-        BUTTON_3.setCallbackData("/3_CHANGING");
-        BUTTON_4.setCallbackData("/4_CHANGING");
+        InlineKeyboardButton BUTTON_2 = new InlineKeyboardButton( (user.isTwo() ? EMOJI:"") +"2 знаки");
+        InlineKeyboardButton BUTTON_3 = new InlineKeyboardButton((user.isThree() ? EMOJI:"") +"3 знаки");
+        InlineKeyboardButton BUTTON_4 = new InlineKeyboardButton( (user.isFour() ? EMOJI:"") +"4 знаки");
+        BUTTON_2.setCallbackData(user.isTwo() ? "/2_CHECKED" : "/2_CHANGING");
+        BUTTON_3.setCallbackData(user.isThree() ? "/3_CHECKED" : "/3_CHANGING");
+        BUTTON_4.setCallbackData(user.isFour() ? "/4_CHECKED" : "/4_CHANGING");
         List<InlineKeyboardButton> two = List.of(BUTTON_2);
         List<InlineKeyboardButton> three = List.of(BUTTON_3);
         List<InlineKeyboardButton> four = List.of(BUTTON_4);
@@ -130,12 +130,12 @@ public class Buttons {
 
     // keyboard of banks list
     public static InlineKeyboardMarkup banks(UserPreferences user) {
-        InlineKeyboardButton PRIVATE_BUTTON = new InlineKeyboardButton("ПриватБанк");
-        InlineKeyboardButton MONO_BUTTON = new InlineKeyboardButton( "МоноБанк");
-        InlineKeyboardButton NBU_BUTTON = new InlineKeyboardButton( "НБУ");
-        PRIVATE_BUTTON.setCallbackData("/Private_CHANGING");
-        MONO_BUTTON.setCallbackData("/Mono_CHANGING");
-        NBU_BUTTON.setCallbackData("/NBU_CHANGING");
+        InlineKeyboardButton PRIVATE_BUTTON = new InlineKeyboardButton((user.isPrivate() ? EMOJI:"") +"ПриватБанк");
+        InlineKeyboardButton MONO_BUTTON = new InlineKeyboardButton( (user.isMono() ? EMOJI:"") +"МоноБанк");
+        InlineKeyboardButton NBU_BUTTON = new InlineKeyboardButton( (user.isNBU() ? EMOJI:"") +"НБУ");
+        PRIVATE_BUTTON.setCallbackData(user.isPrivate() ? "/Private_CHECKED" :"/Private_CHANGING");
+        MONO_BUTTON.setCallbackData(user.isMono() ? "/Mono_CHECKED" : "/Mono_CHANGING");
+        NBU_BUTTON.setCallbackData(user.isNBU() ? "/NBU_CHECKED" : "/NBU_CHANGING");
 
         List<InlineKeyboardButton> privat = List.of(PRIVATE_BUTTON);
         List<InlineKeyboardButton> monobank = List.of(MONO_BUTTON);
@@ -199,10 +199,10 @@ public class Buttons {
 
     // keyboard of currency settings
     public static InlineKeyboardMarkup chooseCurrency(UserPreferences user) {
-        InlineKeyboardButton EUR_BUTTON = new InlineKeyboardButton("EUR");
-        InlineKeyboardButton USD_BUTTON = new InlineKeyboardButton("USD");
-        EUR_BUTTON.setCallbackData("/EUR_CHANGING");
-        USD_BUTTON.setCallbackData("/USD_CHANGING");
+        InlineKeyboardButton EUR_BUTTON = new InlineKeyboardButton((user.isEur() ? EMOJI:"") + "EUR");
+        InlineKeyboardButton USD_BUTTON = new InlineKeyboardButton((user.isUsd() ? EMOJI:"") + "USD");
+        EUR_BUTTON.setCallbackData(user.isEur() ? "/EUR_CHECKED" : "/EUR_CHANGING");
+        USD_BUTTON.setCallbackData(user.isUsd() ? "/USD_CHECKED" : "/USD_CHANGING");
 
         List<InlineKeyboardButton> eur = List.of(EUR_BUTTON);
         List<InlineKeyboardButton> usd = List.of(USD_BUTTON);
