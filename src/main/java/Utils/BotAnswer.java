@@ -14,8 +14,8 @@ import java.util.Map;
 
 public class BotAnswer {
     @Getter
-    private static Map<String, NotificationScheduler> schedules = new HashMap<>();
-    private static Map<String, UserPreferences> preferences = new HashMap<>();
+    private static final Map<String, NotificationScheduler> schedules = new HashMap<>();
+    private static final Map<String, UserPreferences> preferences = new HashMap<>();
 
     public void botAnswerUtils(String receivedMessage, SendMessage message, MessageSender sender) {
         switch (receivedMessage) {
@@ -44,32 +44,26 @@ public class BotAnswer {
                 MessageUtil.setTime(message, preferences.get(message.getChatId()).getTime());
                 break;
             case "/2_CHANGING":
-               // preferences.get(message.getChatId()).isTwo();
                 preferences.get(message.getChatId()).setDf(new DecimalFormat("#0.00"));
                 MessageUtil.returnMenu(message, "2 знаки");
                 break;
             case "/3_CHANGING":
-                //preferences.get(message.getChatId()).isThree();
                 preferences.get(message.getChatId()).setDf(new DecimalFormat("#0.000"));
                 MessageUtil.returnMenu(message, "3 знаки");
                 break;
             case "/4_CHANGING":
-                //preferences.get(message.getChatId()).isFour();
                 preferences.get(message.getChatId()).setDf(new DecimalFormat("#0.0000"));
                 MessageUtil.returnMenu(message, "4 знаки");
                 break;
             case "/Private_CHANGING":
-                //preferences.get(message.getChatId()).isPrivate();
                 preferences.get(message.getChatId()).setBank(new PrivatService());
                 MessageUtil.returnMenu(message, "ПриватБанк");
                 break;
             case "/Mono_CHANGING":
-               // preferences.get(message.getChatId()).isMono();
                 preferences.get(message.getChatId()).setBank(new MonobankService());
                 MessageUtil.returnMenu(message, "Монобанк");
                 break;
             case "/NBU_CHANGING":
-                //preferences.get(message.getChatId()).isNBU();
                 preferences.get(message.getChatId()).setBank(new NBUService());
                 MessageUtil.returnMenu(message, "Банк НБУ");
                 break;
@@ -172,7 +166,7 @@ public class BotAnswer {
                 preferences.get(message.getChatId()).setTwo(false);
                 MessageUtil.countFloatPointChanging(message, preferences.get(message.getChatId()));
                 break;
-                default:
+            default:
                 break;
         }
     }

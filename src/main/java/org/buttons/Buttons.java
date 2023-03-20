@@ -7,15 +7,11 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Buttons {
     private static final String EMOJI = "✅";
-    private static final DecimalFormat POINT_2 = new DecimalFormat("#0.00");
-    private static final DecimalFormat POINT_3 = new DecimalFormat("#0.000");
-    private static final DecimalFormat POINT_4 = new DecimalFormat("#0.0000");
     private static final InlineKeyboardButton SETTINGS_BUTTON = new InlineKeyboardButton("Налаштування");
     private static final InlineKeyboardButton GET_INFO_BUTTON = new InlineKeyboardButton("Отримату інфо");
     private static final InlineKeyboardButton COUNT_BUTTON = new InlineKeyboardButton("Кількість знаків після коми");
@@ -46,6 +42,7 @@ public class Buttons {
 
         return markupInline;
     }
+
     //Setting menu keyboard
     public static InlineKeyboardMarkup settingMarkup() {
         List<InlineKeyboardButton> count = List.of(COUNT_BUTTON);
@@ -59,11 +56,12 @@ public class Buttons {
 
         return markupInline;
     }
+
     //keyboard of settings of count numbers after point
     public static InlineKeyboardMarkup setFloatPoint(UserPreferences user) {
-        InlineKeyboardButton BUTTON_2 = new InlineKeyboardButton( (user.isTwo() ? EMOJI:"") +"2 знаки");
-        InlineKeyboardButton BUTTON_3 = new InlineKeyboardButton((user.isThree() ? EMOJI:"") +"3 знаки");
-        InlineKeyboardButton BUTTON_4 = new InlineKeyboardButton( (user.isFour() ? EMOJI:"") +"4 знаки");
+        InlineKeyboardButton BUTTON_2 = new InlineKeyboardButton((user.isTwo() ? EMOJI : "") + "2 знаки");
+        InlineKeyboardButton BUTTON_3 = new InlineKeyboardButton((user.isThree() ? EMOJI : "") + "3 знаки");
+        InlineKeyboardButton BUTTON_4 = new InlineKeyboardButton((user.isFour() ? EMOJI : "") + "4 знаки");
         BUTTON_2.setCallbackData(user.isTwo() ? "/2_CHECKED" : "/2_CHANGING");
         BUTTON_3.setCallbackData(user.isThree() ? "/3_CHECKED" : "/3_CHANGING");
         BUTTON_4.setCallbackData(user.isFour() ? "/4_CHECKED" : "/4_CHANGING");
@@ -77,21 +75,14 @@ public class Buttons {
 
         return markupInline;
     }
+
+    //changing keyboard of settings of count numbers after point
     public static InlineKeyboardMarkup setFloatPointChanging(UserPreferences user) {
         InlineKeyboardButton BUTTON_2 = new InlineKeyboardButton();
         InlineKeyboardButton BUTTON_3 = new InlineKeyboardButton();
         InlineKeyboardButton BUTTON_4 = new InlineKeyboardButton();
 
-//        if(!user.isThree() && !user.isTwo() && !user.isFour()){
-//            BUTTON_2.setText("2 знаки");
-//            BUTTON_3.setText("3 знаки");
-//            BUTTON_4.setText("4 знаки");
-//            BUTTON_2.setCallbackData("/2_CHANGING");
-//            BUTTON_3.setCallbackData("/3_CHANGING");
-//            BUTTON_4.setCallbackData("/4_CHANGING");
-//
-//        }
-         if (user.isTwo()) {
+        if (user.isTwo()) {
             BUTTON_2.setText(EMOJI + "2 знаки");
             BUTTON_3.setText("3 знаки");
             BUTTON_4.setText("4 знаки");
@@ -107,8 +98,8 @@ public class Buttons {
             BUTTON_4.setCallbackData("/4_CHANGING");
         } else if (user.isFour()) {
             BUTTON_2.setText("2 знаки");
-            BUTTON_3.setText( "3 знаки");
-            BUTTON_4.setText(EMOJI +"4 знаки");
+            BUTTON_3.setText("3 знаки");
+            BUTTON_4.setText(EMOJI + "4 знаки");
             BUTTON_2.setCallbackData("/2_CHANGING");
             BUTTON_3.setCallbackData("/3_CHANGING");
             BUTTON_4.setCallbackData("/4_CHECKED");
@@ -127,10 +118,10 @@ public class Buttons {
 
     // keyboard of banks list
     public static InlineKeyboardMarkup banks(UserPreferences user) {
-        InlineKeyboardButton PRIVATE_BUTTON = new InlineKeyboardButton((user.isPrivate() ? EMOJI:"") +"ПриватБанк");
-        InlineKeyboardButton MONO_BUTTON = new InlineKeyboardButton( (user.isMono() ? EMOJI:"") +"МоноБанк");
-        InlineKeyboardButton NBU_BUTTON = new InlineKeyboardButton( (user.isNBU() ? EMOJI:"") +"НБУ");
-        PRIVATE_BUTTON.setCallbackData(user.isPrivate() ? "/Private_CHECKED" :"/Private_CHANGING");
+        InlineKeyboardButton PRIVATE_BUTTON = new InlineKeyboardButton((user.isPrivate() ? EMOJI : "") + "ПриватБанк");
+        InlineKeyboardButton MONO_BUTTON = new InlineKeyboardButton((user.isMono() ? EMOJI : "") + "МоноБанк");
+        InlineKeyboardButton NBU_BUTTON = new InlineKeyboardButton((user.isNBU() ? EMOJI : "") + "НБУ");
+        PRIVATE_BUTTON.setCallbackData(user.isPrivate() ? "/Private_CHECKED" : "/Private_CHANGING");
         MONO_BUTTON.setCallbackData(user.isMono() ? "/Mono_CHECKED" : "/Mono_CHANGING");
         NBU_BUTTON.setCallbackData(user.isNBU() ? "/NBU_CHECKED" : "/NBU_CHANGING");
 
@@ -145,22 +136,12 @@ public class Buttons {
         return markupInline;
     }
 
-
+    // changing keyboard of banks list
     public static InlineKeyboardMarkup banksChanging(UserPreferences user) {
         InlineKeyboardButton PRIVATE_BUTTON = new InlineKeyboardButton();
         InlineKeyboardButton MONO_BUTTON = new InlineKeyboardButton();
         InlineKeyboardButton NBU_BUTTON = new InlineKeyboardButton();
 
-//        if(!user.isPrivate() && !user.isMono() && !user.isEur()){
-//            PRIVATE_BUTTON.setText("ПриватБанк");
-//            MONO_BUTTON.setText("МоноБанк");
-//            NBU_BUTTON.setText("НБУ");
-//            PRIVATE_BUTTON.setCallbackData("/Private_CHANGING");
-//            MONO_BUTTON.setCallbackData("/Mono_CHANGING");
-//            NBU_BUTTON.setCallbackData("/NBU_CHANGING");
-//            System.out.println(" 01 ");
-//
-//        }
         if (user.isPrivate()) {
             PRIVATE_BUTTON.setText(EMOJI + "ПриватБанк");
             MONO_BUTTON.setText("МоноБанк");
@@ -197,8 +178,8 @@ public class Buttons {
 
     // keyboard of currency settings
     public static InlineKeyboardMarkup chooseCurrency(UserPreferences user) {
-        InlineKeyboardButton EUR_BUTTON = new InlineKeyboardButton((user.isEur() ? EMOJI:"") + "EUR");
-        InlineKeyboardButton USD_BUTTON = new InlineKeyboardButton((user.isUsd() ? EMOJI:"") + "USD");
+        InlineKeyboardButton EUR_BUTTON = new InlineKeyboardButton((user.isEur() ? EMOJI : "") + "EUR");
+        InlineKeyboardButton USD_BUTTON = new InlineKeyboardButton((user.isUsd() ? EMOJI : "") + "USD");
         EUR_BUTTON.setCallbackData(user.isEur() ? "/EUR_CHECKED" : "/EUR_CHANGING");
         USD_BUTTON.setCallbackData(user.isUsd() ? "/USD_CHECKED" : "/USD_CHANGING");
 
@@ -212,10 +193,12 @@ public class Buttons {
 
         return markupInline;
     }
+
+    // changing keyboard of currency settings
     public static InlineKeyboardMarkup chooseCurrencyChanging(UserPreferences user) {
         InlineKeyboardButton EUR_BUTTON = new InlineKeyboardButton();
         InlineKeyboardButton USD_BUTTON = new InlineKeyboardButton();
-        if (!user.isUsd() && !user.isEur()){
+        if (!user.isUsd() && !user.isEur()) {
             EUR_BUTTON.setText("EUR");
             USD_BUTTON.setText("USD");
             EUR_BUTTON.setCallbackData("/EUR_CHANGING");
@@ -247,10 +230,10 @@ public class Buttons {
 
         return markupInline;
     }
+
     // settings of alert time keyboard
     public static ReplyKeyboardMarkup initTimeKeyboard() {
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
-        ;
 
         replyKeyboardMarkup.setResizeKeyboard(true);
         replyKeyboardMarkup.setOneTimeKeyboard(true);

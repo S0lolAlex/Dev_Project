@@ -10,8 +10,8 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 public class NotificationScheduler {
-    private int hours;
-    private DailyNotification notification;
+    private final int hours;
+    private final DailyNotification notification;
     private ScheduledFuture<?> scheduledFuture;
 
     public NotificationScheduler(int hours, DailyNotification notification) {
@@ -21,7 +21,6 @@ public class NotificationScheduler {
 
     public void start() {
         ZonedDateTime now = ZonedDateTime.now();
-//todo remove after test        ZonedDateTime nextRun = now.plusSeconds(50);
         ZonedDateTime nextRun = now.withHour(hours).withMinute(0).withSecond(0);
         if (now.compareTo(nextRun) > 0)
             nextRun = nextRun.plusDays(1);

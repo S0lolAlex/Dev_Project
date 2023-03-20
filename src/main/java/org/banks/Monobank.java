@@ -15,10 +15,11 @@ public class Monobank {
     private BigDecimal rateSell;
     private BigDecimal rateBuy;
     private BigDecimal rateCross;
+
     @Override
-    public String toString(){
+    public String toString() {
         return "Code currency = " + currencyCodeA
                 + " Change to " + currencyCodeB
-                + " time = " + new Date(date*1000);
+                + " time = " + new Date(date * 1000);
     }
 }

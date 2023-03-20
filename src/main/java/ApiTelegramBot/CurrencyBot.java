@@ -26,7 +26,8 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands, 
     public String getBotToken() {
         return "";
     }
-//Bot constructor
+
+    //Bot constructor
     public CurrencyBot() {
         Buttons.initKeyboard();
         try {
@@ -35,11 +36,12 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands, 
             e.printStackTrace();
         }
     }
-//Main method that get message from chat
+
+    //Main method that get message from chat
     @Override
     public void onUpdateReceived(Update update) {
         String reseive;
-        long CHAT_ID = 0;
+        long CHAT_ID;
 
         if (update.hasMessage()) {
             CHAT_ID = update.getMessage().getChatId();
@@ -48,7 +50,7 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands, 
 
             if (update.getMessage().hasText()) {
                 reseive = update.getMessage().getText();
-                answer.botAnswerUtils(reseive,message, this);
+                answer.botAnswerUtils(reseive, message, this);
                 sendMessage(message);
             }
         } else if (update.hasCallbackQuery()) {
@@ -56,24 +58,25 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands, 
             SendMessage message = new SendMessage();
             message.setChatId(CHAT_ID);
             reseive = update.getCallbackQuery().getData();
-            if (reseive.contains("_CHANGING")){
+            if (reseive.contains("_CHANGING")) {
                 EditMessageReplyMarkup newMessage = new EditMessageReplyMarkup();
                 newMessage.setChatId(CHAT_ID);
                 newMessage.setMessageId(update.getCallbackQuery().getMessage().getMessageId());
                 answer.botChangingAnswerUtils(reseive, newMessage, this);
                 sendNewMessage(newMessage);
-            } else if (reseive.contains("_CHECKED")){
+            } else if (reseive.contains("_CHECKED")) {
                 EditMessageReplyMarkup newMessage = new EditMessageReplyMarkup();
                 newMessage.setChatId(CHAT_ID);
                 newMessage.setMessageId(update.getCallbackQuery().getMessage().getMessageId());
                 answer.botChangingAnswerUtils(reseive, newMessage, this);
                 sendNewMessage(newMessage);
             }
-            answer.botAnswerUtils(reseive,message, this);
+            answer.botAnswerUtils(reseive, message, this);
             sendMessage(message);
         }
     }
-//Send message in chat
+
+    //Send message in chat
     public void sendMessage(SendMessage message) {
         try {
             execute(message);
@@ -81,7 +84,8 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands, 
             e.printStackTrace();
         }
     }
-//Send edited message in chat
+
+    //Send edited message in chat
     public void sendNewMessage(EditMessageReplyMarkup newMessage) {
         try {
             execute(newMessage);
