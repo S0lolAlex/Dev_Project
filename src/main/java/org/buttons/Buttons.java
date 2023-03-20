@@ -1,9 +1,6 @@
 package org.buttons;
 
 import Utils.UserPreferences;
-import org.dto.MonobankService;
-import org.dto.NBUService;
-import org.dto.PrivatService;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
@@ -85,16 +82,16 @@ public class Buttons {
         InlineKeyboardButton BUTTON_3 = new InlineKeyboardButton();
         InlineKeyboardButton BUTTON_4 = new InlineKeyboardButton();
 
-        if(!user.isThree() && !user.isTwo() && !user.isFour()){
-            BUTTON_2.setText("2 знаки");
-            BUTTON_3.setText("3 знаки");
-            BUTTON_4.setText("4 знаки");
-            BUTTON_2.setCallbackData("/2_CHANGING");
-            BUTTON_3.setCallbackData("/3_CHANGING");
-            BUTTON_4.setCallbackData("/4_CHANGING");
-
-        }
-        else if (user.isTwo()) {
+//        if(!user.isThree() && !user.isTwo() && !user.isFour()){
+//            BUTTON_2.setText("2 знаки");
+//            BUTTON_3.setText("3 знаки");
+//            BUTTON_4.setText("4 знаки");
+//            BUTTON_2.setCallbackData("/2_CHANGING");
+//            BUTTON_3.setCallbackData("/3_CHANGING");
+//            BUTTON_4.setCallbackData("/4_CHANGING");
+//
+//        }
+         if (user.isTwo()) {
             BUTTON_2.setText(EMOJI + "2 знаки");
             BUTTON_3.setText("3 знаки");
             BUTTON_4.setText("4 знаки");
@@ -154,16 +151,17 @@ public class Buttons {
         InlineKeyboardButton MONO_BUTTON = new InlineKeyboardButton();
         InlineKeyboardButton NBU_BUTTON = new InlineKeyboardButton();
 
-        if(!user.isPrivate() && !user.isMono() && !user.isEur()){
-            PRIVATE_BUTTON.setText("ПриватБанк");
-            MONO_BUTTON.setText("МоноБанк");
-            NBU_BUTTON.setText("НБУ");
-            PRIVATE_BUTTON.setCallbackData("/Private_CHANGING");
-            MONO_BUTTON.setCallbackData("/Mono_CHANGING");
-            NBU_BUTTON.setCallbackData("/NBU_CHANGING");
-
-        }
-        else if (user.isPrivate()) {
+//        if(!user.isPrivate() && !user.isMono() && !user.isEur()){
+//            PRIVATE_BUTTON.setText("ПриватБанк");
+//            MONO_BUTTON.setText("МоноБанк");
+//            NBU_BUTTON.setText("НБУ");
+//            PRIVATE_BUTTON.setCallbackData("/Private_CHANGING");
+//            MONO_BUTTON.setCallbackData("/Mono_CHANGING");
+//            NBU_BUTTON.setCallbackData("/NBU_CHANGING");
+//            System.out.println(" 01 ");
+//
+//        }
+        if (user.isPrivate()) {
             PRIVATE_BUTTON.setText(EMOJI + "ПриватБанк");
             MONO_BUTTON.setText("МоноБанк");
             NBU_BUTTON.setText("НБУ");
@@ -238,10 +236,6 @@ public class Buttons {
             EUR_BUTTON.setCallbackData("/EUR_CHECKED");
             USD_BUTTON.setCallbackData("/USD_CHANGING");
         }
-//        InlineKeyboardButton EUR_BUTTON_CHECKED = new InlineKeyboardButton(EMOJI + "EUR");
-//        InlineKeyboardButton USD_BUTTON = new InlineKeyboardButton((user.isUsd() ? EMOJI:"") + "USD");
-//        EUR_BUTTON_CHECKED.setCallbackData("/EUR_CHECKED");
-//        USD_BUTTON.setCallbackData("/USD");
 
         List<InlineKeyboardButton> eur = List.of(EUR_BUTTON);
         List<InlineKeyboardButton> usd = List.of(USD_BUTTON);

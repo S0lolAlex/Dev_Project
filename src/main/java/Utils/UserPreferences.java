@@ -27,7 +27,13 @@ public class UserPreferences {
         df = new DecimalFormat("#0.00");
         isUsd = false;
         isEur = false;
+        isPrivate = true;
+        isMono = false;
+        isNBU = false;
         isOne = true;
+        isTwo = true;
+        isThree = false;
+        isFour = false;
         currency = "USD";
         time = "what?";
     }

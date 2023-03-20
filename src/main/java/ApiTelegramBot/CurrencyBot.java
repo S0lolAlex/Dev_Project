@@ -20,7 +20,7 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands, 
 
     @Override
     public String getBotUsername() {
-        return "DimaTelegrambot";
+        return "";
     }
 
     @Override
