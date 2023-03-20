@@ -12,7 +12,6 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import static Utils.BotAnswer.preferences;
 
 //Main class of TelegramBot
 public class CurrencyBot extends TelegramLongPollingBot implements BotCommands, MessageSender {
@@ -82,7 +81,7 @@ public class CurrencyBot extends TelegramLongPollingBot implements BotCommands, 
             e.printStackTrace();
         }
     }
-
+//Send edited message in chat
     public void sendNewMessage(EditMessageReplyMarkup newMessage) {
         try {
             execute(newMessage);

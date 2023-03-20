@@ -67,12 +67,6 @@ public class BotAnswer {
                 MessageUtil.returnMenu(message, "Банк НБУ");
                 preferences.get(message.getChatId()).setBank(new NBUService());
                 break;
-//            case "/USD":
-//                preferences.get(message.getChatId()).setUsd(!preferences.get(message.getChatId()).isUsd());
-//                break;
-//            case "/EUR":
-//                preferences.get(message.getChatId()).setEur(!preferences.get(message.getChatId()).isEur());
-//                break;
             case "/Chosen":
                 if (!preferences.get(message.getChatId()).isUsd() && !preferences.get(message.getChatId()).isEur()) {
                     preferences.get(message.getChatId()).setOne(true);

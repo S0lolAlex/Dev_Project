@@ -117,6 +117,7 @@ public class Buttons {
         return markupInline;
     }
 
+    // changing keyboard of currency settings
     public static InlineKeyboardMarkup chooseCurrencyChanging(UserPreferences user) {
         InlineKeyboardButton EUR_BUTTON = new InlineKeyboardButton();
         InlineKeyboardButton USD_BUTTON = new InlineKeyboardButton();
@@ -141,10 +142,6 @@ public class Buttons {
             EUR_BUTTON.setCallbackData("/EUR_CHECKED");
             USD_BUTTON.setCallbackData("/USD_CHANGING");
         }
-//        InlineKeyboardButton EUR_BUTTON_CHECKED = new InlineKeyboardButton(EMOJI + "EUR");
-//        InlineKeyboardButton USD_BUTTON = new InlineKeyboardButton((user.isUsd() ? EMOJI:"") + "USD");
-//        EUR_BUTTON_CHECKED.setCallbackData("/EUR_CHECKED");
-//        USD_BUTTON.setCallbackData("/USD");
 
         List<InlineKeyboardButton> eur = List.of(EUR_BUTTON);
         List<InlineKeyboardButton> usd = List.of(USD_BUTTON);
