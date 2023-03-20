@@ -15,7 +15,7 @@ import java.util.Map;
 public class BotAnswer {
     @Getter
     private static Map<String, NotificationScheduler> schedules = new HashMap<>();
-    public static Map<String, UserPreferences> preferences = new HashMap<>();
+    private static Map<String, UserPreferences> preferences = new HashMap<>();
 
     public void botAnswerUtils(String receivedMessage, SendMessage message, MessageSender sender) {
         switch (receivedMessage) {
